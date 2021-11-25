@@ -164,39 +164,20 @@
                         Ações
                     </th>
                 </tr>
-                <tr>
-                    <td>
-                        Perfect Caps
-                    </td>
-                    <td>
-                        R$ 100,00
-                    </td>
-                    <td>
-                        <a href='' class='btn btn-primary'>Editar</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Nature Caps
-                    </td>
-                    <td>
-                        R$ 120,00
-                    </td>
-                    <td>
-                        <a href='' class='btn btn-primary'>Editar</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Libid Caps
-                    </td>
-                    <td>
-                        R$ 150,00
-                    </td>
-                    <td>
-                        <a href='' class='btn btn-primary'>Editar</a>
-                    </td>
-                </tr>
+
+                @foreach ($listProduct as $product)
+                    <tr>
+                        <td>
+                            {{ $product->name }}
+                        </td>
+                        <td>
+                            R$ {{ $product->valueProduct }}
+                        </td>
+                        <td>
+                            <a href='' class='btn btn-primary'>Editar</a>
+                        </td>
+                    </tr>
+                @endforeach
             </table>
         </div>
     </div>

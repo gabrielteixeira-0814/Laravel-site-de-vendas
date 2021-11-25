@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User;
 use App\Product;
 
-class DashboardController extends Controller
+class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,15 +14,7 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $listIUserModel = app(User::class);
-        $listProductModel = app(Product::class);
-
-         // List Users/Client
-         $listUser = $listIUserModel->all();
-
-         $listProduct = $listProductModel->all();
-
-        return view('dashboard', compact('listUser', 'listProduct'));
+       // 
     }
 
     /**
