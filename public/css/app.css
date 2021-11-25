@@ -12261,7 +12261,7 @@ button.toast-close-button {
 }
 
 .bg-gradient-primary {
-  background: #ffad14 linear-gradient(180deg, #005d71 0, #007C7D 100%) 0 0 no-repeat padding-box !important;
+  background: #000000 !important;
 }
 
 .bg-gradient-info {
@@ -12285,11 +12285,11 @@ button.toast-close-button {
 }
 
 .btn-primary {
-  background: #005d71 linear-gradient(180deg, #005d71 0, #007C7D 100%) 0 0 no-repeat padding-box !important;
+  background: #118f6b !important;
 }
 
 .btn-primary:hover {
-  background: transparent linear-gradient(180deg, #006F8A 0, #009596 100%) 0 0 no-repeat padding-box !important;
+  background: #105441 !important;
 }
 
 .btn-primary:active {
