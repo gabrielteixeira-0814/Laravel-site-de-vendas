@@ -15,9 +15,9 @@
                             </div>
                             <select class="form-control" id="inlineFormInputName">
                                 <option>Clientes</option>
-                                {{-- @foreach ($listUser as $listUserCpf)
-                                    <option>{{ $listUserCpf->cpf }}</option>
-                                @endforeach --}}
+                                @foreach ($listUser as $listUserCpf)
+                                    <option>{{ $listUserCpf->cpf }} - {{ $listUserCpf->name }}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>

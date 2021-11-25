@@ -15,7 +15,11 @@ class DashboardController extends Controller
     public function index()
     {
         $listIUserModel = app(User::class);
-        return $listIUserModel;
+
+         // List Users/Client
+         $listUser = $listIUserModel->all();
+
+        return view('dashboard', compact('listUser'));
     }
 
     /**

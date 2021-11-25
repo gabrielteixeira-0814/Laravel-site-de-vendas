@@ -22,8 +22,6 @@ class DashboardController extends Controller
         $listIUserModel = app(User::class);
         $listSaleModel = app(Sale::class);
 
-        dd(listIUserModel);
-
         $searchCpf = request('cpf');
        
         if($searchCpf) {
