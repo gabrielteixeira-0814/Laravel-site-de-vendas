@@ -4,18 +4,23 @@
     <h1>Adicionar / Editar Usuários</h1>
     <div class='card'>
         <div class='card-body'>
-            <form>
+            <form method="POST" action="{{ route('user.store')}}">
+                @csrf
                 <div class="form-group">
-                    <label for="name">Nome do Usuário</label>
-                    <input type="text" class="form-control " id="name">
+                    <label for="name">Nome</label>
+                    <input type="text" class="form-control =" name="name" id="name">
                 </div>
                 <div class="form-group">
-                    <label for="description">Descrição</label>
-                    <textarea type="text" rows='5' class="form-control" id="description"></textarea>
+                    <label for="cpf">CPF</label>
+                    <input type="text" class="form-control" name="cpf" id="cpf">
                 </div>
                 <div class="form-group">
-                    <label for="price">Preço</label>
-                    <input type="text" class="form-control" id="price" placeholder="100,00 ou maior">
+                    <label for="email">E-mail</label>
+                    <input type="email" class="form-control" name="email" id="email">
+                </div>
+                <div class="form-group">
+                    <label for="password">Senha</label>
+                    <input type="password" class="form-control" name="password" id="password">
                 </div>
                 <button type="submit" class="btn btn-primary">Salvar</button>
             </form>
