@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Hash;
 use App\User;
 
 class UserController extends Controller
@@ -43,8 +44,12 @@ class UserController extends Controller
             'password' => 'sometimes|required|string|min:6|confirmed', // sometimes deixar valida so quando o registro password existir
         ]);
 
-        // $listIUserModel = app(User::class);
-        return $validatedData;
+        $validatedData['password'] = Hash::make($validatedData['password']);
+
+        $createUser = User::create($validatedData);
+
+        return back()->with('success', 'User created successfully.');
+       
     }
 
     /**
