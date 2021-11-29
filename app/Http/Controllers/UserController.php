@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use App\User;
 
 class UserController extends Controller
 {
@@ -34,7 +36,15 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        return $request;
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'cpf' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255',
+            'password' => 'sometimes|required|string|min:6|confirmed', // sometimes deixar valida so quando o registro password existir
+        ]);
+
+        // $listIUserModel = app(User::class);
+        return $validatedData;
     }
 
     /**
