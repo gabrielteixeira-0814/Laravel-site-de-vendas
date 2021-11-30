@@ -16,7 +16,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('crud_users');
+        // 
     }
 
     /**
@@ -26,7 +26,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        $page = 'create';
+        return view('crud_users', compact('page'));
     }
 
     /**
@@ -37,18 +38,27 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+
+        $mensagens = [
+            'required' => 'O :attribute é obrigatório!',
+            'name.min' => 'É necessário no mínimo 5 caracteres no nome!',
+            'name.max' => 'É necessário no Máximo 255 caracteres no nome!',
+            'email.email' => 'Digite um email válido!',
+            'password.required' => 'A senha é obrigatório!'
+        ];
+
         $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|min:5|max:255',
             'cpf' => 'required|string|max:255',
             'email' => 'required|string|email|max:255',
             'password' => 'sometimes|required|string|min:6|confirmed', // sometimes deixar valida so quando o registro password existir
-        ]);
+        ], $mensagens);
 
         $validatedData['password'] = Hash::make($validatedData['password']);
 
         $createUser = User::create($validatedData);
 
-        return back()->with('success', 'User created successfully.');
+        return back()->with('success', 'Usuário criado com sucesso.');
        
     }
 
@@ -60,7 +70,8 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $page = 'edit';
+        return view('crud_users', compact('page'));
     }
 
     /**

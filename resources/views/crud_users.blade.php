@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('content')
-    <h1>Adicionar / Editar Usuários</h1>
+    <h1>{{$page ? 'Adicionar' : 'Editar'}} Usuários</h1>
     <div class='card'>
         <div class='card-body'>
 
@@ -11,6 +11,13 @@
                         @foreach ($errors->all() as $error)
                             <li>{{ $error }}</li>
                         @endforeach
+                    </ul>
+                </div>
+            @endif
+            @if (\Session::has('success'))
+                <div class="alert alert-success">
+                    <ul>
+                        <li>{!! \Session::get('success') !!}</li>
                     </ul>
                 </div>
             @endif

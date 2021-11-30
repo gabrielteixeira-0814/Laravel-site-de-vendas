@@ -41,13 +41,13 @@
                             <span class="nav_name">Dashboard</span> 
                         </a>
 
-                         <a href="{{ route('user.index')}}" class="nav_link"> <i class='bx bx-user nav_icon'></i>
+                         <a href="{{ route('user.create')}}" class="nav_link"> <i class='bx bx-user nav_icon'></i>
                             <span class="nav_name">Usuários</span>
                         </a> 
-                        <a href="{{ route('product.index')}}" class="nav_link"> <i class='bx bx-message-square-detail nav_icon'></i>
+                        <a href="{{ route('product.create')}}" class="nav_link"> <i class='bx bx-message-square-detail nav_icon'></i>
                             <span class="nav_name">Produtos</span>
                         </a>
-                        <a href="{{ route('sale.index')}}" class="nav_link"> <i class='bx bx-bookmark nav_icon'></i>
+                        <a href="{{ route('sale.create')}}" class="nav_link"> <i class='bx bx-bookmark nav_icon'></i>
                             <span class="nav_name">Vendas</span>
                         </a>
                         <a href="#" class="nav_link"> <i class='bx bx-bar-chart-alt-2 nav_icon'></i>
