@@ -14,7 +14,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-       return view('crud_products');
+       // 
     }
 
     /**
@@ -24,7 +24,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $page = 'create';
+        return view('crud_products', compact('page'));
     }
 
     /**
@@ -35,7 +36,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return $request;
     }
 
     /**
@@ -46,7 +47,8 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+        $page = 'edit';
+        return view('crud_products', compact('page'));
     }
 
     /**
