@@ -13,7 +13,7 @@ class SaleController extends Controller
      */
     public function index()
     {
-        return view('crud_sales');
+        //
     }
 
     /**
@@ -23,7 +23,7 @@ class SaleController extends Controller
      */
     public function create()
     {
-        //
+        return view('crud_sales');
     }
 
     /**
