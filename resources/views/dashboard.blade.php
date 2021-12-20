@@ -174,7 +174,7 @@
                             R$ {{ $product->price }}
                         </td>
                         <td>
-                            <a href='' class='btn btn-primary'>Editar</a>
+                            <a href="{{route('product.edit',$product->id)}}" class='btn btn-primary'>Editar</a>
                         </td>
                     </tr>
                 @endforeach
