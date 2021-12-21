@@ -21,6 +21,7 @@
                     </ul>
                 </div>
             @endif
+            
             <form method="POST" action="{{ route('user.store')}}">
                 @csrf
                 <div class="form-group">

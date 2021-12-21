@@ -28,7 +28,8 @@ class ProductController extends Controller
         $page = 'create';
         $route = 'product.store';
         $method = 'POST';
-        return view('crud_products', compact('page', 'route', 'method'));
+        $product = '';
+        return view('crud_products', compact('page', 'route', 'method', 'product'));
     }
 
     /**
@@ -40,15 +41,20 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $mensagens = [
-            'required' => 'O :attribute é obrigatório!',
+            'name.required' => 'O nome é obrigatório!',
             'name.min' => 'É necessário no mínimo 5 caracteres no nome do produto!',
-            'name.max' => 'É necessário no Máximo 255 caracteres no nome do produto!'
+            'name.max' => 'É necessário no Máximo 255 caracteres no nome do produto!',
+
+            'description.required' => 'A descrição é obrigatório!',
+            'description.max' => 'É necessário no Máximo 255 caracteres na descrição do produto!',
+
+            'price.required' => 'O preço é obrigatório!',
         ];
 
         $validatedData = $request->validate([
             'name' => 'required|string|min:5|max:255',
             'description' => 'required|string|max:255',
-            'price' => 'required',
+            'price' => 'required|regex:/^\d+(\.\d{1,2})?$/', // Parei aqui 
         ], $mensagens);
 
         $validatedData['status'] = 1;
@@ -82,7 +88,11 @@ class ProductController extends Controller
         $page = "edit";
         $route = 'product.update';
         $method = 'PUT';
-        return view('crud_products', compact('id','page', 'route', 'method'));
+
+        $findProductModel = app(Product::class);
+        $product = $findProductModel->find($id);
+
+        return view('crud_products', compact('id','page', 'route', 'method', 'product'));
     }
 
     /**
@@ -94,8 +104,6 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        dd($request);
-        /*
         $mensagens = [
             'required' => 'O :attribute é obrigatório!',
             'name.min' => 'É necessário no mínimo 5 caracteres no nome do produto!',
@@ -112,7 +120,7 @@ class ProductController extends Controller
 
         $createUser = Product::create($validatedData);
 
-        return back()->with('success', 'Produto criado com sucesso.'); */
+        return back()->with('success', 'Produto criado com sucesso.');
     }
 
     /**
