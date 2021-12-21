@@ -23,9 +23,12 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
+
     {
         $page = 'create';
-        return view('crud_products', compact('page'));
+        $route = 'product.store';
+        $method = 'POST';
+        return view('crud_products', compact('page', 'route', 'method'));
     }
 
     /**
@@ -75,7 +78,11 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        return 'OLA MUNDO!';
+        $id = $id;
+        $page = "edit";
+        $route = 'product.update';
+        $method = 'PUT';
+        return view('crud_products', compact('id','page', 'route', 'method'));
     }
 
     /**
@@ -87,7 +94,25 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        dd($request);
+        /*
+        $mensagens = [
+            'required' => 'O :attribute é obrigatório!',
+            'name.min' => 'É necessário no mínimo 5 caracteres no nome do produto!',
+            'name.max' => 'É necessário no Máximo 255 caracteres no nome do produto!'
+        ];
+
+        $validatedData = $request->validate([
+            'name' => 'required|string|min:5|max:255',
+            'description' => 'required|string|max:255',
+            'price' => 'required',
+        ], $mensagens);
+
+        $validatedData['status'] = 1;
+
+        $createUser = Product::create($validatedData);
+
+        return back()->with('success', 'Produto criado com sucesso.'); */
     }
 
     /**

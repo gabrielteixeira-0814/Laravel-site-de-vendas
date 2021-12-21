@@ -1,10 +1,10 @@
 @extends('layout')
 
 @section('content')
-    <h1>{{ $page ? 'Adicionar' : 'Editar'}} Produto</h1>
+    <h1>{{ $page == 'create' ? 'Adicionar' : 'Editar'}} Produto -- {{$route}} -- {{$method}}</h1>
     <div class='card'>
         <div class='card-body'>
-            <form method="POST" action="{{ route('product.store') }}">
+            <form method="{{$method}}" action="{{ $page == 'create' ? route($route) : route('product.update', $id) }}">
                 @csrf
                 <div class="form-group">
                     <label for="name">Nome do produto</label>
