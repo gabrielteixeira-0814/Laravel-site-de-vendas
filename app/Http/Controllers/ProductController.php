@@ -54,9 +54,16 @@ class ProductController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|string|min:5|max:255',
             'description' => 'required|string|max:255',
-            'price' => 'required|regex:/^\d+(\.\d{1,2})?$/', // Parei aqui 
+            'price' => 'required|regex:/^\d+(\,\d{1,2})?$/', // Parei aqui 
         ], $mensagens);
+        
+        // return $request->price;
 
+        $vl_unitario = $request->price;
+        $vl_unitario = str_replace(',', '.', $vl_unitario);
+        //$vl_unitario = "3,00";
+
+        $validatedData['price'] = $vl_unitario;
         $validatedData['status'] = 1;
 
         $createUser = Product::create($validatedData);

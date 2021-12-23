@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('content')
-    <h1>{{ $page == 'create' ? 'Adicionar' : 'Editar'}} Produto -- {{$route}} -- {{$method}}</h1>
+    <h1>{{ $page == 'create' ? 'Adicionar' : 'Editar'}} Produto</h1>
     <div class='card'>
         <div class='card-body'>
             
