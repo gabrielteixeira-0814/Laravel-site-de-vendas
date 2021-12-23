@@ -21,6 +21,13 @@
                     </ul>
                 </div>
             @endif
+            @if (\Session::has('error'))
+                <div class="alert alert-danger">
+                    <ul>
+                        <li>{!! \Session::get('error') !!}</li>
+                    </ul>
+                </div>
+            @endif
 
             <form method="POST" action="{{ $page == 'create' ? route($route) : route('product.update', $product->id) }}">
 
@@ -41,7 +48,7 @@
                 </div>
                 <div class="form-group">
                     <label for="price">Preço</label>
-                    <input type="text" class="form-control" id="price" name="price" value="{{ $product != '' ? $product->price :  old('price') }}" placeholder="0,00">
+                    <input type="text" class="form-control" id="price" name="price" value="{{ $product != '' ? str_replace('.', ',', $product->price) :  old('price') }}" placeholder="0,00">
                 </div>
                 <button type="submit" class="btn btn-primary">Salvar</button>
             </form>

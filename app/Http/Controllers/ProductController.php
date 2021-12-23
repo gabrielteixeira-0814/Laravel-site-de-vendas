@@ -111,23 +111,42 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
+        
         $mensagens = [
-            'required' => 'O :attribute é obrigatório!',
+            'name.required' => 'O nome é obrigatório!',
             'name.min' => 'É necessário no mínimo 5 caracteres no nome do produto!',
-            'name.max' => 'É necessário no Máximo 255 caracteres no nome do produto!'
+            'name.max' => 'É necessário no Máximo 255 caracteres no nome do produto!',
+
+            'description.required' => 'A descrição é obrigatório!',
+            'description.max' => 'É necessário no Máximo 255 caracteres na descrição do produto!',
+
+            'price.required' => 'O preço é obrigatório!',
+            'price.regex' => 'O formato do preço é inválido!',
         ];
 
         $validatedData = $request->validate([
             'name' => 'required|string|min:5|max:255',
             'description' => 'required|string|max:255',
-            'price' => 'required',
+            'price' => 'required|regex:/^\d+(\,\d{1,2})?$/',
         ], $mensagens);
+        
+        // return $request->price;
 
+        $vl_unitario = $request->price;
+        $vl_unitario = str_replace(',', '.', $vl_unitario);
+        //$vl_unitario = "3,00";
+
+        $validatedData['price'] = $vl_unitario;
         $validatedData['status'] = 1;
 
-        $createUser = Product::create($validatedData);
-
-        return back()->with('success', 'Produto criado com sucesso.');
+        $product = Product::where('id', $id)->first();
+        
+        if($product) {
+            $product->update($validatedData);
+            return back()->with('success', 'Produto editado com sucesso.');
+        }else {
+            return back()->with('error', 'Produto não foi editado!');
+        }
     }
 
     /**

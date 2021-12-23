@@ -171,10 +171,11 @@
                             {{ $product->name }}
                         </td>
                         <td>
-                            R$ {{ $product->price }}
+                            R$ {{ str_replace('.', ',', $product->price) }}
                         </td>
                         <td>
                             <a href="{{route('product.edit',$product->id)}}" class='btn btn-primary'>Editar</a>
+                            <a href="{{route('product.edit',$product->id)}}" class='btn btn-danger'>Deletar</a>
                         </td>
                     </tr>
                 @endforeach
