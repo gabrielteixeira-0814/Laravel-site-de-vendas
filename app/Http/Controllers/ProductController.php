@@ -79,8 +79,9 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        $page = 'edit';
-        return view('crud_products', compact('page'));
+        return 'oola shooow';
+       // $page = 'edit';
+       // return view('crud_products', compact('page'));
     }
 
     /**
@@ -157,6 +158,6 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //return 'Ola '+$id;
     }
 }
