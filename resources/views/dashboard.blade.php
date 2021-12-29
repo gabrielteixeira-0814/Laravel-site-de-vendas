@@ -1,6 +1,13 @@
 @extends('layout')
 
 @section('content')
+    @if (\Session::has('success'))
+    <div class="alert alert-success">
+        <ul>
+            <li>{!! \Session::get('success') !!}</li>
+        </ul>
+    </div>
+    @endif
     <h1>Dashboard de vendas</h1>
     <div class='card mt-3'>
         <div class='card-body'>
@@ -175,7 +182,7 @@
                         </td>
                         <td>
                             <a href="{{route('product.edit',$product->id)}}" class='btn btn-primary'>Editar</a>
-                            <a href="{{route('product.show',[$product->id,'delete=1'])}}" class='btn btn-danger'>Deletar</a>
+                            <a href="{{route('product.show',$product->id)}}" class='btn btn-danger'>Deletar</a>
                         </td>
                     </tr>
                 @endforeach

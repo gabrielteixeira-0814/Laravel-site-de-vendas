@@ -79,9 +79,14 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        return 'oola shooow';
-       // $page = 'edit';
-       // return view('crud_products', compact('page'));
+        // return 'oola shooow';
+
+        $findProductModel = app(Product::class);
+        $product = $findProductModel->find($id);
+        // return $product;
+        $product->delete();
+
+       return back()->with('success', 'Produto deletado com sucesso.');
     }
 
     /**
