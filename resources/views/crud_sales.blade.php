@@ -21,9 +21,11 @@
                 <h5 class='mt-5'>Informações da venda</h5>
                 <div class="form-group">
                     <label for="product">Produto</label>
-                    <select id="product" class="form-control">
+                    <select id="product" class="form-control" name="product">
                         <option selected>Escolha...</option>
-                        <option>...</option>
+                        @foreach ($listProduct as $product)
+                            <option value="{{ $product->id }}">{{ $product->name }}</option>
+                        @endforeach
                     </select>
                 </div>
                 <div class="form-group">

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
+use App\Product;
 
 class SaleController extends Controller
 {
@@ -23,7 +25,15 @@ class SaleController extends Controller
      */
     public function create()
     {
-        return view('crud_sales');
+
+        $listIUserModel = app(User::class);
+        $listProductModel = app(Product::class);
+
+         // List Users/Client
+        $listUser = $listIUserModel->all();
+        $listProduct = $listProductModel->all();
+
+        return view('crud_sales', compact('listProduct'));
     }
 
     /**

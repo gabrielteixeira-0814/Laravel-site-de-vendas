@@ -14,7 +14,14 @@ class CreateSalesTable extends Migration
     public function up()
     {
         Schema::create('sales', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
+            $table->decimal('valueSale', 8, 2);
+            $table->integer('idUser')->unsigned();
+            $table->integer('idProduct')->unsigned();
+            $table->foreign('idUser')->references('id')->on('users');
+            $table->foreign('idProduct')->references('id')->on('products');
+            $table->boolean('status_sales');
+            $table->boolean('status');
             $table->timestamps();
         });
     }
@@ -26,6 +33,10 @@ class CreateSalesTable extends Migration
      */
     public function down()
     {
+        Schema::table('sales', function (Blueprint $table) {
+            $table->dropForeign('lists_user_id_foreign');
+            $table->dropForeign('lists_product_id_foreign');
+        });
         Schema::dropIfExists('sales');
     }
 }
