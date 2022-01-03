@@ -21,7 +21,7 @@ class DashboardController extends Controller
          // List Users/Client
          $listUser = $listIUserModel->all();
 
-         $listProduct = $listProductModel->where('status', 1)->orderBy('created_at', 'desc')->paginate(2);
+         $listProduct = $listProductModel->where('status', 1)->orderBy('created_at', 'desc')->paginate(5);
 
         return view('dashboard', compact('listUser', 'listProduct'));
     }
