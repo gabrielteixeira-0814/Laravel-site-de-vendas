@@ -187,6 +187,8 @@
                     </tr>
                 @endforeach
             </table>
+            {{ $listProduct->links() }}
+
         </div>
     </div>
 @endsection
