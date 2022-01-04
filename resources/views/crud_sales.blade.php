@@ -9,16 +9,17 @@
                 @method('POST')
                 <h5>Informações do cliente</h5>
                 <div class="form-group">
+                    <label for="cpf">CPF</label>
+                    <input type="text" class="form-control" id="cpf" placeholder="99999999999" name="cpf">
+                </div>
+                <input type="hidden" class="form-control " id="id" name="id" value="1">
+                <div class="form-group">
                     <label for="name">Nome do cliente</label>
                     <input type="text" class="form-control " id="name" name="name">
                 </div>
                 <div class="form-group">
                     <label for="email">Email</label>
                     <input type="text" class="form-control" id="email" name="email">
-                </div>
-                <div class="form-group">
-                    <label for="cpf">CPF</label>
-                    <input type="text" class="form-control" id="cpf" placeholder="99999999999" name="cpf">
                 </div>
                 <h5 class='mt-5'>Informações da venda</h5>
                 <div class="form-group">
