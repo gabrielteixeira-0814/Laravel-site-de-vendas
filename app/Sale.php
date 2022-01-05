@@ -9,6 +9,9 @@ class Sale extends Model
     protected $fillable = [
         'idUser',
         'idProduct',
+        'quantity',
+        'dateSale',
+        'discount',
         'valueSale',
         'status_sales',
         'status',

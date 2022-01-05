@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Product;
+use App\Sale;
 
 class SaleController extends Controller
 {
@@ -44,7 +45,31 @@ class SaleController extends Controller
      */
     public function store(Request $request)
     {
-        return $request;
+        $mensagens = [
+            'quantity.required' => 'A quantidade é obrigatório!',
+            'quantity.numeric' => 'É necessário que seja um número!',
+            
+            'discount.required' => 'O desconto é obrigatório!',
+            'discount.regex' => 'O formato do desconto é inválido.',
+
+            'status_sales.required' => 'O status é obrigatório!',
+        ];
+
+        $validatedData = $request->validate([
+            'quantity' => 'required|numeric',
+            'discount' => 'required|regex:/^\d+(\,\d{1,2})?$/',
+            'status_sales' => 'required|string|max:255', 
+        ], $mensagens);
+        
+        $vl_discount = $request->discount;
+        $vl_discount = str_replace(',', '.', $vl_discount);
+
+        $validatedData['discount'] = $vl_discount;
+        $validatedData['status'] = 1;
+
+        $createUser = Sale::create($validatedData);
+
+        return back()->with('success', 'Produto vendido com sucesso.');
     }
 
     /**

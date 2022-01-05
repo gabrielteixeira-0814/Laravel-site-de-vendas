@@ -4,6 +4,31 @@
     <h1>Adicionar / Editar Venda</h1>
     <div class='card'>
         <div class='card-body'>
+
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+            @if (\Session::has('success'))
+                <div class="alert alert-success">
+                    <ul>
+                        <li>{!! \Session::get('success') !!}</li>
+                    </ul>
+                </div>
+            @endif
+            @if (\Session::has('error'))
+                <div class="alert alert-danger">
+                    <ul>
+                        <li>{!! \Session::get('error') !!}</li>
+                    </ul>
+                </div>
+            @endif
+
             <form method="POST" action="{{ route('sale.store')}}">
                 @csrf
                 @method('POST')
@@ -44,8 +69,8 @@
                     <input type="text" class="form-control" id="discount" placeholder="100,00 ou menor" name="discount">
                 </div>
                 <div class="form-group">
-                    <label for="status">Status</label>
-                    <select id="status" class="form-control" name="discount">
+                    <label for="status_sales">Status</label>
+                    <select id="status_sales" class="form-control" name="status_sales">
                         <option selected>Escolha...</option>
                         <option value="Okay">Aprovado</option>
                         <option value="Called">Cancelado</option>
