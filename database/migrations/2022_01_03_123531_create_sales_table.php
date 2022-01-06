@@ -15,7 +15,7 @@ class CreateSalesTable extends Migration
     {
         Schema::create('sales', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('quantity');
+            $table->string('quantity');
             $table->date('dateSale');
             $table->decimal('discount', 8, 2);
             $table->decimal('valueSale', 8, 2);
@@ -23,7 +23,7 @@ class CreateSalesTable extends Migration
             $table->integer('idProduct')->unsigned();
             $table->foreign('idUser')->references('id')->on('users');
             $table->foreign('idProduct')->references('id')->on('products');
-            $table->boolean('status_sales');
+            $table->string('status_sales');
             $table->boolean('status');
             $table->timestamps();
         });

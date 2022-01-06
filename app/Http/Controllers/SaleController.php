@@ -45,6 +45,8 @@ class SaleController extends Controller
      */
     public function store(Request $request)
     {
+
+        // return $request;
         $mensagens = [
             'quantity.required' => 'A quantidade é obrigatório!',
             'quantity.numeric' => 'É necessário que seja um número!',
@@ -64,8 +66,16 @@ class SaleController extends Controller
         $vl_discount = $request->discount;
         $vl_discount = str_replace(',', '.', $vl_discount);
 
+        $dateSale = date_create($request->date);
+       
+        $validatedData['idUser'] = $request->id;
+        $validatedData['idProduct'] = $request->product;
+        $validatedData['dateSale'] = date_format($dateSale, 'Y-m-d H:i:s'); 
+        $validatedData['valueSale'] = 200;
         $validatedData['discount'] = $vl_discount;
         $validatedData['status'] = 1;
+
+       // return $validatedData;
 
         $createUser = Sale::create($validatedData);
 
