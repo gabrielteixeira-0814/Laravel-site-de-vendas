@@ -21,15 +21,15 @@ class DashboardController extends Controller
         $listSaleModel = app(Sale::class);
 
         // List Users/Client
-        // $listUser = $listIUserModel::with('sales')->get();
-
-        return User::with('sales')->get();
+        $listUser = $listIUserModel::with('userSales')->get();
 
         // List Products
         $listProduct = $listProductModel->where('status', 1)->orderBy('created_at', 'desc')->paginate(5);
 
         // List Sales
-        $listSale = $listSaleModel->where('status', 1)->orderBy('created_at', 'desc')->paginate(5);
+        $listSale = $listSaleModel->get(); //->where('status', 1)->orderBy('created_at', 'desc')->paginate(5);
+
+        return  $listSale;
 
         return view('dashboard', compact('listUser', 'listProduct', 'listSale'));
     }

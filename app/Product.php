@@ -12,4 +12,10 @@ class Product extends Model
         'price',
         'status',
     ];
+
+    public function productSale() {
+
+        // O produto pertence a uma venda 
+        return $this->belongsTo(Sale::class, 'id', 'idProduct');
+    }
 }

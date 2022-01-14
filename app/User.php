@@ -13,7 +13,7 @@ class User extends Model
         'password',
     ];
 
-     public function sales() {
+     public function userSales() {
         
         // O usuario tem muitas vendas
         return $this->hasMany(Sale::class, 'idUser', 'id');

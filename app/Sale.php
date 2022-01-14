@@ -15,12 +15,14 @@ class Sale extends Model
         'valueSale',
         'status_sales',
         'status',
-    ];
+    ]; 
 
 
-    public function users() {
+    // whats
 
-        // O venda perdense a um usuário
-        return $this->belongsTo(User::class, 'id', 'idUser');
+    public function saleProduct() {
+        
+        // A Venda tem muitos produtos
+        return $this->hasOne(Product::class, 'idProduct', 'id');
     }
 }
