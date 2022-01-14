@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Product;
+use App\Sale;
 
 class DashboardController extends Controller
 {
@@ -17,13 +18,20 @@ class DashboardController extends Controller
     {
         $listIUserModel = app(User::class);
         $listProductModel = app(Product::class);
+        $listSaleModel = app(Sale::class);
 
-         // List Users/Client
-         $listUser = $listIUserModel->all();
+        // List Users/Client
+        // $listUser = $listIUserModel::with('sales')->get();
 
-         $listProduct = $listProductModel->where('status', 1)->orderBy('created_at', 'desc')->paginate(5);
+        return User::with('sales')->get();
 
-        return view('dashboard', compact('listUser', 'listProduct'));
+        // List Products
+        $listProduct = $listProductModel->where('status', 1)->orderBy('created_at', 'desc')->paginate(5);
+
+        // List Sales
+        $listSale = $listSaleModel->where('status', 1)->orderBy('created_at', 'desc')->paginate(5);
+
+        return view('dashboard', compact('listUser', 'listProduct', 'listSale'));
     }
 
     /**

@@ -16,4 +16,11 @@ class Sale extends Model
         'status_sales',
         'status',
     ];
+
+
+    public function users() {
+
+        // O venda perdense a um usuário
+        return $this->belongsTo(User::class, 'id', 'idUser');
+    }
 }

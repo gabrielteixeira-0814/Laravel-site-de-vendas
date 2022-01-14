@@ -12,4 +12,10 @@ class User extends Model
         'cpf',
         'password',
     ];
+
+     public function sales() {
+        
+        // O usuario tem muitas vendas
+        return $this->hasMany(Sale::class, 'idUser', 'id');
+    }
 }

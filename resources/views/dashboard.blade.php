@@ -58,48 +58,25 @@
                         Ações
                     </th>
                 </tr>
-                <tr>
-                    <td>
-                        Perfect Caps
-                    </td>
-                    <td>
-                        20/07/2019 19h15
-                    </td>
-                    <td>
-                        R$ 100,00
-                    </td>
-                    <td>
-                        <a href='' class='btn btn-primary'>Editar</a>
-                    </td>
+
+                @foreach ($listSale as $sale)
+                    <tr>
+                        <td>
+                            Perfect Caps
+                        </td>
+                        <td>
+                            20/07/2019 19h15
+                        </td>
+                        <td>
+                            R$ 100,00
+                        </td>
+                        <td>
+                            <a href='' class='btn btn-primary'>Editar</a>
+                        </td>
+                    </tr>
+                @endforeach
                 </tr>
-                <tr>
-                    <td>
-                        Nature Caps
-                    </td>
-                    <td>
-                        20/07/2019 19h20
-                    </td>
-                    <td>
-                        R$ 125,00
-                    </td>
-                    <td>
-                        <a href='' class='btn btn-primary'>Editar</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Libid Caps
-                    </td>
-                    <td>
-                        20/07/2019 19h45
-                    </td>
-                    <td>
-                        R$ 110,00
-                    </td>
-                    <td>
-                        <a href='' class='btn btn-primary'>Editar</a>
-                    </td>
-                </tr>
+                
             </table>
         </div>
     </div>

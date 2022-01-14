@@ -63,14 +63,13 @@ class SaleController extends Controller
             'status_sales' => 'required|string|max:255', 
         ], $mensagens);
         
+        // Convertendo valor dinheiro para formato correto
         $vl_discount = $request->discount;
         $vl_discount = str_replace(',', '.', $vl_discount);
 
-        $dateSale = date_create($request->date);
-       
         $validatedData['idUser'] = $request->id;
         $validatedData['idProduct'] = $request->product;
-        $validatedData['dateSale'] = date_format($dateSale, 'Y-m-d H:i:s'); 
+        $validatedData['dateSale'] = $request->date;
         $validatedData['valueSale'] = 200;
         $validatedData['discount'] = $vl_discount;
         $validatedData['status'] = 1;

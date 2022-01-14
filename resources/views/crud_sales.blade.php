@@ -58,7 +58,7 @@
                 </div>
                 <div class="form-group">
                     <label for="date">Data</label>
-                    <input type="text" class="form-control single_date_picker" id="date" name="date">
+                    <input type="date" class="form-control" id="date" name="date">
                 </div>
                 <div class="form-group">
                     <label for="quantity">Quantidade</label>
