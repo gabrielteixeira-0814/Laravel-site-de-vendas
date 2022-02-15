@@ -23,6 +23,6 @@ class Sale extends Model
     public function saleProduct() {
         
         // A Venda tem muitos produtos
-        return $this->hasOne(Product::class, 'idProduct', 'id');
+        return $this->hasMany(Product::class, 'id', 'idProduct');
     }
 }

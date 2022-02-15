@@ -24,10 +24,10 @@ class DashboardController extends Controller
         $listUser = $listIUserModel::with('userSales')->get();
 
         // List Products
-        $listProduct = $listProductModel->where('status', 1)->orderBy('created_at', 'desc')->paginate(5);
+        $listProduct = $listProductModel::with('productSale')->where('status', 1)->orderBy('created_at', 'desc')->paginate(5);
 
         // List Sales
-        $listSale = $listSaleModel->get(); //->where('status', 1)->orderBy('created_at', 'desc')->paginate(5);
+        $listSale = $listSaleModel::with('saleProduct')->where('status', 1)->orderBy('created_at', 'desc')->paginate(5);
 
         return  $listSale;
 
