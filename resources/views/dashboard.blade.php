@@ -62,13 +62,13 @@
                 @foreach ($listSale as $sale)
                     <tr>
                         <td>
-                            Perfect Caps
+                            {{ $sale->sale_product }}
                         </td>
                         <td>
-                            20/07/2019 19h15
+                            {{ $sale->dateSale }}
                         </td>
                         <td>
-                            R$ 100,00
+                            R$ {{ $sale->valueSale }}
                         </td>
                         <td>
                             <a href='' class='btn btn-primary'>Editar</a>
