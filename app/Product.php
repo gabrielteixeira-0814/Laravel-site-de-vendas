@@ -16,6 +16,6 @@ class Product extends Model
     public function productSale() {
 
         // O produto pertence a uma venda 
-        return $this->hasOne(Sale::class, 'id', 'idProduct');
+        return $this->belongsTo(Sale::class, 'id', 'idProduct');
     }
 }
