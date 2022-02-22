@@ -27,7 +27,7 @@ class DashboardController extends Controller
         $listProduct = $listProductModel::with('productSale')->where('status', 1)->orderBy('created_at', 'desc')->paginate(5);
 
         // List Sales
-        $listSale = $listSaleModel::with('saleProduct')->get(); //where('status', 1)->orderBy('created_at', 'desc'); //->paginate(5);
+        $listSale = $listSaleModel::with(['product'])->get(); //->orderBy('created_at', 'desc'); //->paginate(5);
 
         // return  $listSale;
 

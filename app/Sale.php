@@ -20,9 +20,9 @@ class Sale extends Model
 
     // whats
 
-    public function saleProduct() {
+    public function product() {
         
         // A Venda tem muitos produtos
-        return $this->hasOne(Product::class, 'id', 'idProduct');
+        return $this->belongsTo(Product::class, 'idProduct', 'id');
     }
 }

@@ -60,9 +60,10 @@
                 </tr>
 
                 @foreach ($listSale as $sale)
+               
                     <tr>
                         <td>
-                            {{ $sale->sale_product }}
+                            {{ $sale->product->name }}
                         </td>
                         <td>
                             {{ $sale->dateSale }}
