@@ -100,7 +100,8 @@ class SaleController extends Controller
      */
     public function edit($id)
     {
-        //
+        
+        return view('crud_sales');
     }
 
     /**

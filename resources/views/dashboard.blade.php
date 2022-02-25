@@ -52,6 +52,9 @@
                         Data
                     </th>
                     <th scope="col">
+                        Hora
+                    </th>
+                    <th scope="col">
                         Valor
                     </th>
                     <th scope="col">
@@ -66,19 +69,23 @@
                             {{ $sale->product->name }}
                         </td>
                         <td>
-                            {{ $sale->dateSale }}
+                            {{ date("d/m/Y", strtotime($sale->dateSale)) }} 
                         </td>
                         <td>
-                            R$ {{ $sale->valueSale }}
+                            {{ date("H:i:s", strtotime($sale->dateSale)) }} 
                         </td>
                         <td>
-                            <a href='' class='btn btn-primary'>Editar</a>
+                            R$ {{ str_replace('.', ',', $sale->valueSale) }}
+                        </td>
+                        <td>
+                            <a href='{{route('sale.edit',$sale->id)}}' class='btn btn-primary'>Editar</a>
                         </td>
                     </tr>
                 @endforeach
                 </tr>
                 
             </table>
+            {{ $listSale->links() }}
         </div>
     </div>
     <div class='card mt-3'>

@@ -22,7 +22,7 @@ class Sale extends Model
 
     public function product() {
         
-        // A Venda tem muitos produtos
+        // A Venda tem um produtos
         return $this->hasOne(Product::class, 'id', 'idProduct');
     }
 }
