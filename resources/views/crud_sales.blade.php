@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('content')
-    <h1>Adicionar / Editar Venda</h1>
+    <h1>Adicionar / Editar Venda {{ $page }}</h1>
     <div class='card'>
         <div class='card-body'>
 

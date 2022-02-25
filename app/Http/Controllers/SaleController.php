@@ -100,8 +100,20 @@ class SaleController extends Controller
      */
     public function edit($id)
     {
-        
-        return view('crud_sales');
+        $id = $id;
+        $page = "edit";
+        $route = 'sale.update';
+        $method = 'PUT';
+
+
+        $listIUserModel = app(User::class);
+        $listProductModel = app(Product::class);
+
+         // List Users/Client
+        $listUser = $listIUserModel->all();
+        $listProduct = $listProductModel->all();
+
+        return view('crud_sales', compact ('id', 'page','route', 'method','listUser', 'listProduct'));
     }
 
     /**
