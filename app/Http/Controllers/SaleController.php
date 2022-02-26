@@ -26,6 +26,9 @@ class SaleController extends Controller
      */
     public function create()
     {
+        $page = 'create';
+        $route = 'sale.store';
+        $method = 'POST';
 
         $listIUserModel = app(User::class);
         $listProductModel = app(Product::class);
@@ -34,7 +37,7 @@ class SaleController extends Controller
         $listUser = $listIUserModel->all();
         $listProduct = $listProductModel->all();
 
-        return view('crud_sales', compact('listProduct'));
+        return view('crud_sales', compact('listProduct', 'page', 'route', 'method'));
     }
 
     /**

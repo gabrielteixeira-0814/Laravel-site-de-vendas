@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('content')
-    <h1>Adicionar / Editar Venda {{ $page }}</h1>
+    <h1> {{ $page == "edit" ? "Editar Venda" : "Adicionar" }}</h1>
     <div class='card'>
         <div class='card-body'>
 
@@ -81,4 +81,11 @@
             </form>
         </div>
     </div>
+@endsection
+
+
+@section('script')
+    <script>console.log('olá mundo!')</script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 @endsection
