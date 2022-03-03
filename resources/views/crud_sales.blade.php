@@ -84,8 +84,17 @@
 @endsection
 
 
-@section('script')
-    <script>console.log('olá mundo!')</script>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+@section('get-script')
+  
+<script>
+    $.ajax({
+        url: "{{ route('product.index')}}",
+        success: function( result ) {
+        //$( "#weather-temp" ).html( "<strong>" + result + "</strong> degrees" );
+        console.log(result);
+        }
+    });
+</script>
+
+
 @endsection

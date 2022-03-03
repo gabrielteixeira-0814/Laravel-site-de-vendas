@@ -67,6 +67,9 @@
 
     <script src="{{ url('/js/app.js') }}"></script>
     @yield('script')
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://kit.fontawesome.com/d712964458.js" crossorigin="anonymous"></script>
+
+    @yield('get-script')
 </body>
 </html>

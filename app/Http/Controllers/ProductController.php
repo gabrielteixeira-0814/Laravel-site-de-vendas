@@ -14,7 +14,11 @@ class ProductController extends Controller
      */
     public function index()
     {
-       // 
+        $listProductModel = app(Product::class);
+         // List Users/Client
+         $listProduct = $listProductModel->all();
+
+         return Response::json($listProduct);
     }
 
     /**
