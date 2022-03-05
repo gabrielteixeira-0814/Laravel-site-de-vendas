@@ -17,8 +17,11 @@ class ProductController extends Controller
         $listProductModel = app(Product::class);
          // List Users/Client
          $listProduct = $listProductModel->all();
-
-         return Response::json($listProduct);
+      
+         // $dados = json_enconde($listProduct);
+         //return response()->json($json);
+         
+         return response()->json($listProduct);
     }
 
     /**

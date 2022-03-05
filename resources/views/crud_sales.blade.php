@@ -84,16 +84,28 @@
 @endsection
 
 
-@section('get-script')
+@section('script')
   
 <script>
-    $.ajax({
-        url: "{{ route('product.index')}}",
-        success: function( result ) {
-        //$( "#weather-temp" ).html( "<strong>" + result + "</strong> degrees" );
-        console.log(result);
-        }
+
+    $(document).ready(function(){
+        $.ajax({
+            type: "GET",
+            url: "{{ route('product.index') }}  ",
+            datatype: "json",
+            success: function(data) {
+            // $("#div1").html(result);
+            // alert(result);
+
+            console.log(data[0].name);
+            // console.log("Ola mundo!");
+        },
+        error: function (data) {
+                console.log(data);
+            }
+        });
     });
+  
 </script>
 
 
