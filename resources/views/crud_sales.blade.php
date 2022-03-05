@@ -91,13 +91,14 @@
     $(document).ready(function(){
         $.ajax({
             type: "GET",
-            url: "{{ route('product.index') }}  ",
+            url: "{{ route('sale.getDataUser') }}",
+            'data': {id: 1},
             datatype: "json",
             success: function(data) {
             // $("#div1").html(result);
             // alert(result);
 
-            console.log(data[0].name);
+            console.log(data);
             // console.log("Ola mundo!");
         },
         error: function (data) {

@@ -8,3 +8,6 @@ Route::resources([
     '/product' => 'ProductController',
     '/sale' => 'SaleController',
 ]);
+
+// Criação de uma nova função no controlador resources de vendas(Sales) usando essa rota
+Route::get('getDataUser', 'SaleController@getDataUser')->name('sale.getDataUser');
