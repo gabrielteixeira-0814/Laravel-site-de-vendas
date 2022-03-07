@@ -144,15 +144,10 @@ class SaleController extends Controller
 
     public function getDataUser()
     {
-
-        $id = $_GET['id'];
-        $listProductModel = app(Product::class);
-         // List Users/Client
-         $listProduct = $listProductModel->all();
-      
-         // $dados = json_enconde($listProduct);
-         //return response()->json($json);
-         
-         return response()->json($id);
+        $cpf = $_GET['cpf'];
+        $user = app(User::class);
+        $findUser = $user->where('cpf', $cpf)->select('id','cpf','name','email')->get();
+        
+        return response()->json($findUser[0]);
     }
 }

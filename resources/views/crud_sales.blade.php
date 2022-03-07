@@ -35,7 +35,7 @@
                 <h5>Informações do cliente</h5>
                 <div class="form-group">
                     <label for="cpf">CPF</label>
-                    <input type="text" class="form-control" id="cpf" placeholder="99999999999" name="cpf">
+                    <input type="text" class="form-control cpf" id="cpf" placeholder="99999999999" name="cpf">
                 </div>
                 <input type="hidden" class="form-control " id="id" name="id" value="1">
                 <div class="form-group">
@@ -87,12 +87,17 @@
 @section('script')
   
 <script>
+       
+        $(".cpf").blur(function(){
 
-    $(document).ready(function(){
-        $.ajax({
+            var cpf = $(".cpf").val();
+            var cpf = parseInt(cpf);
+            alert(cpf);
+            
+            $.ajax({
             type: "GET",
             url: "{{ route('sale.getDataUser') }}",
-            'data': {id: 1},
+            'data': {cpf: cpf},
             datatype: "json",
             success: function(data) {
             // $("#div1").html(result);
@@ -101,13 +106,15 @@
             console.log(data);
             // console.log("Ola mundo!");
         },
-        error: function (data) {
-                console.log(data);
-            }
+            error: function (data) {
+                    console.log(data);
+                }
+            });
         });
+    $(document).ready(function(){
+        
     });
   
 </script>
-
 
 @endsection
