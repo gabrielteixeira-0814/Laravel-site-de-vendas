@@ -32,6 +32,8 @@
             <form method="POST" action="{{ route('sale.store')}}">
                 @csrf
                 @method('POST')
+
+                <div class="resp"></div>
                 <h5>Informações do cliente</h5>
                 <div class="form-group">
                     <label for="cpf">CPF</label>
@@ -40,11 +42,11 @@
                 <input type="hidden" class="form-control " id="id" name="id" value="1">
                 <div class="form-group">
                     <label for="name">Nome do cliente</label>
-                    <input type="text" class="form-control " id="name" name="name">
+                    <input type="text" class="form-control name" id="name" name="name">
                 </div>
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="text" class="form-control" id="email" name="email">
+                    <input type="text" class="form-control email" id="email" name="email">
                 </div>
                 <h5 class='mt-5'>Informações da venda</h5>
                 <div class="form-group">
@@ -91,8 +93,7 @@
         $(".cpf").blur(function(){
 
             var cpf = $(".cpf").val();
-            var cpf = parseInt(cpf);
-            alert(cpf);
+            // alert(cpf);
             
             $.ajax({
             type: "GET",
@@ -100,14 +101,18 @@
             'data': {cpf: cpf},
             datatype: "json",
             success: function(data) {
-            // $("#div1").html(result);
-            // alert(result);
 
-            console.log(data);
-            // console.log("Ola mundo!");
+            if(data) {
+                $(".name").val(data.name);
+                $(".email").val(data.email);
+                console.log(data.name);
+            }
         },
             error: function (data) {
-                    console.log(data);
+                $(".resp").html("Não há nenhum registro com esse CPF, verifique se está correto!");
+                $(".resp").css({"background-color": "#f8d7da","color": "#721c24", "text-align" : "center", "font-size": "17px", "border-radius": "5px", "border-color" : "#f5c6c"});
+                console.log("error na parada");
+
                 }
             });
         });
