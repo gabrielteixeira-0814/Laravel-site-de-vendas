@@ -39,7 +39,7 @@
                     <label for="cpf">CPF</label>
                     <input type="text" class="form-control cpf" id="cpf" placeholder="99999999999" name="cpf">
                 </div>
-                <input type="hidden" class="form-control " id="id" name="id" value="1">
+                <input type="hidden" class="form-control id" id="id" name="id">
                 <div class="form-group">
                     <label for="name">Nome do cliente</label>
                     <input type="text" class="form-control name" id="name" name="name">
@@ -103,6 +103,7 @@
             success: function(data) {
 
             if(data) {
+                $(".id").val(data.id);
                 $(".name").val(data.name);
                 $(".email").val(data.email);
                 console.log(data.name);

@@ -70,10 +70,13 @@ class SaleController extends Controller
         $vl_discount = $request->discount;
         $vl_discount = str_replace(',', '.', $vl_discount);
 
+        $findProduct = app(Product::class);
+        $valueProduct = $findProduct->where('id', $request->product)->select('id','name','price')->get();
+
         $validatedData['idUser'] = $request->id;
         $validatedData['idProduct'] = $request->product;
         $validatedData['dateSale'] = $request->date;
-        $validatedData['valueSale'] = 200;
+        $validatedData['valueSale'] = $valueProduct[0]['price'];
         $validatedData['discount'] = $vl_discount;
         $validatedData['status'] = 1;
 
@@ -147,7 +150,7 @@ class SaleController extends Controller
         $cpf = $_GET['cpf'];
         $user = app(User::class);
         $findUser = $user->where('cpf', $cpf)->select('id','cpf','name','email')->get();
-        
+
         return response()->json($findUser[0]);
     }
 }
