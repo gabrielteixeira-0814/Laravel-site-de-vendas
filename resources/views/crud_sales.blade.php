@@ -42,11 +42,11 @@
                 <input type="hidden" class="form-control id" id="id" name="id">
                 <div class="form-group">
                     <label for="name">Nome do cliente</label>
-                    <input type="text" class="form-control name" id="name" name="name">
+                    <input type="text" class="form-control name" id="name" name="name" disabled="disabled">
                 </div>
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="text" class="form-control email" id="email" name="email">
+                    <input type="text" class="form-control email" id="email" name="email" disabled="disabled">
                 </div>
                 <h5 class='mt-5'>Informações da venda</h5>
                 <div class="form-group">
@@ -107,19 +107,21 @@
                 $(".name").val(data.name);
                 $(".email").val(data.email);
                 console.log(data.name);
+                $(".resp").hide();
             }
         },
             error: function (data) {
+                $(".resp").show();
                 $(".resp").html("Não há nenhum registro com esse CPF, verifique se está correto!");
                 $(".resp").css({"background-color": "#f8d7da","color": "#721c24", "text-align" : "center", "font-size": "17px", "border-radius": "5px", "border-color" : "#f5c6c"});
-                console.log("error na parada");
+                // console.log("error na parada");
 
                 }
             });
         });
-    $(document).ready(function(){
+    // $(document).ready(function(){
         
-    });
+    // });
   
 </script>
 

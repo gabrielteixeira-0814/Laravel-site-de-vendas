@@ -27,7 +27,7 @@ class DashboardController extends Controller
         $listProduct = $listProductModel->where('status', 1)->orderBy('created_at', 'desc')->paginate(5);
 
         // List Sales
-        $listSale = $listSaleModel::with(['product'])->where('status', 1)->orderBy('created_at', 'desc')->paginate(1);
+        $listSale = $listSaleModel::with(['product'])->where('status', 1)->orderBy('created_at', 'desc')->paginate(5);
 
         // return  $listUser;
         return view('dashboard', compact('listUser', 'listProduct', 'listSale'));

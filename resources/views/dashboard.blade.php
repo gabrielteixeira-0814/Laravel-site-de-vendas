@@ -46,6 +46,9 @@
             <table class='table'>
                 <tr>
                     <th scope="col">
+                        id
+                    </th>
+                    <th scope="col">
                         Produto
                     </th>
                     <th scope="col">
@@ -65,6 +68,9 @@
                 @foreach ($listSale as $sale)
                
                     <tr>
+                        <td>
+                            {{ $sale->product->id }}
+                        </td>
                         <td>
                             {{ $sale->product->name }}
                         </td>
