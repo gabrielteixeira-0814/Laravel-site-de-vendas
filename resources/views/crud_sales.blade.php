@@ -29,7 +29,7 @@
                 </div>
             @endif
 
-            <form method="POST" action="{{ $page == 'create' ? route('sale.store') : route('sale.update', $sale->id)}}">
+            <form method="POST" action="{{ $page == 'create' ? route($route) : route('sale.update', 1)}}">
                 @csrf
                 @if ($method == 'PUT')
                     @method('PUT')
@@ -41,21 +41,21 @@
                 <h5>Informações do cliente</h5>
                 <div class="form-group">
                     <label for="cpf">CPF</label>
-                    <input type="text" class="form-control cpf" id="cpf" value="{{ $sale != '' ? $sale->cpf :  old('cpf') }}" placeholder="99999999999" name="cpf">
+                    <input type="text" class="form-control cpf" id="cpf" value="{{ $dataUser != '' ? $dataUser->cpf :  old('cpf') }}" placeholder="99999999999" name="cpf" {{ $dataUser != '' ? "disabled" :  "" }}>
                 </div>
                 <input type="hidden" class="form-control id" id="id" name="id">
                 <div class="form-group">
                     <label for="name">Nome do cliente</label>
-                    <input type="text" class="form-control name" id="name" name="name" disabled="disabled">
+                    <input type="text" class="form-control name" id="name" name="name" disabled="disabled" value="{{ $dataUser != '' ? $dataUser->name :  old('name') }}">
                 </div>
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="text" class="form-control email" id="email" name="email" disabled="disabled">
+                    <input type="text" class="form-control email" id="email" name="email" disabled="disabled" value="{{ $dataUser != '' ? $dataUser->email :  old('email') }}">
                 </div>
                 <h5 class='mt-5'>Informações da venda</h5>
                 <div class="form-group">
                     <label for="product">Produto</label>
-                    <select id="product" class="form-control" name="product">
+                    <select id="product" class="form-control" name="product"> 
                         <option selected>Escolha...</option>
                         @foreach ($listProduct as $product)
                             <option value="{{ $product->id }}">{{ $product->name }}</option>
@@ -64,15 +64,15 @@
                 </div>
                 <div class="form-group">
                     <label for="date">Data</label>
-                    <input type="date" class="form-control" id="date" name="date">
+                    <input type="date" class="form-control" id="date" name="date" value="{{ $dataSale != '' ? $dataSale->dateSale :  old('date') }}">
                 </div>
                 <div class="form-group">
                     <label for="quantity">Quantidade</label>
-                    <input type="text" class="form-control" id="quantity" placeholder="1 a 10" name="quantity">
+                    <input type="text" class="form-control" id="quantity" placeholder="1 a 10" name="quantity" value="{{ $dataSale != '' ? $dataSale->quantity :  old('quantity') }}">
                 </div>
                 <div class="form-group">
                     <label for="discount">Desconto</label>
-                    <input type="text" class="form-control" id="discount" placeholder="100,00 ou menor" name="discount">
+                    <input type="text" class="form-control" id="discount" placeholder="100,00 ou menor" name="discount" value="{{ $dataSale != '' ? $dataSale->discount :  old('discount') }}">
                 </div>
                 <div class="form-group">
                     <label for="status_sales">Status</label>

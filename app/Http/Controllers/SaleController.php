@@ -29,6 +29,8 @@ class SaleController extends Controller
         $page = 'create';
         $route = 'sale.store';
         $method = 'POST';
+        $dataUser = '';
+        $dataProduct = '';
 
         $listIUserModel = app(User::class);
         $listProductModel = app(Product::class);
@@ -37,7 +39,7 @@ class SaleController extends Controller
         $listUser = $listIUserModel->all();
         $listProduct = $listProductModel->all();
 
-        return view('crud_sales', compact('listProduct', 'page', 'route', 'method'));
+        return view('crud_sales', compact('listProduct', 'page', 'route', 'method','dataUser'));
     }
 
     /**
@@ -120,17 +122,19 @@ class SaleController extends Controller
         $listUser = $listIUserModel->all();
         $listProduct = $listProductModel->all();
 
-        $sale = $findSaleModel->find($id);
+        // Encontrar os dados da venda 
+        $dataSale = $findSaleModel->find($id);
+        
+        // Encontrar os dados do usuário 
+        $dataUser = $listIUserModel->find($dataSale->idUser);
 
-        // Encontrar o usuário da venda
+        // Encontrar os dados do produto 
+        $dataProduct = $listProductModel->find($dataSale->idProduct);
 
-        $listSale = $findSaleModel::with(['saleUser'])->get();
+        //$sale = $findSaleModel::with(["saleUser"])->where('id', $id)->get();
+        // return $findDataUser;
 
-
-        //$findUserSale = $listIUserModel->find($sale->idUser);
-
-        return $listSale;
-        return view('crud_sales', compact ('id', 'page','route', 'method','listUser', 'listProduct', 'sale'));
+        return view('crud_sales', compact ('id', 'page','route', 'method','listUser', 'listProduct', 'dataSale', 'dataUser', 'dataProduct'));
     }
 
     /**
