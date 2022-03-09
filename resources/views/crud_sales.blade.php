@@ -29,15 +29,19 @@
                 </div>
             @endif
 
-            <form method="POST" action="{{ route('sale.store')}}">
+            <form method="POST" action="{{ $page == 'create' ? route('sale.store') : route('sale.update', $sale->id)}}">
                 @csrf
-                @method('POST')
+                @if ($method == 'PUT')
+                    @method('PUT')
+                @else
+                    @method('POST')
+                @endif
 
                 <div class="resp"></div>
                 <h5>Informações do cliente</h5>
                 <div class="form-group">
                     <label for="cpf">CPF</label>
-                    <input type="text" class="form-control cpf" id="cpf" placeholder="99999999999" name="cpf">
+                    <input type="text" class="form-control cpf" id="cpf" value="{{ $sale != '' ? $sale->cpf :  old('cpf') }}" placeholder="99999999999" name="cpf">
                 </div>
                 <input type="hidden" class="form-control id" id="id" name="id">
                 <div class="form-group">
@@ -89,40 +93,38 @@
 @section('script')
   
 <script>
-       
-        $(".cpf").blur(function(){
+    $(".cpf").blur(function(){
 
-            var cpf = $(".cpf").val();
-            // alert(cpf);
-            
-            $.ajax({
-            type: "GET",
-            url: "{{ route('sale.getDataUser') }}",
-            'data': {cpf: cpf},
-            datatype: "json",
-            success: function(data) {
-
-            if(data) {
-                $(".id").val(data.id);
-                $(".name").val(data.name);
-                $(".email").val(data.email);
-                console.log(data.name);
-                $(".resp").hide();
-            }
-        },
-            error: function (data) {
-                $(".resp").show();
-                $(".resp").html("Não há nenhum registro com esse CPF, verifique se está correto!");
-                $(".resp").css({"background-color": "#f8d7da","color": "#721c24", "text-align" : "center", "font-size": "17px", "border-radius": "5px", "border-color" : "#f5c6c"});
-                // console.log("error na parada");
-
-                }
-            });
-        });
-    // $(document).ready(function(){
+        var cpf = $(".cpf").val();
+        // alert(cpf);
         
-    // });
-  
+        $.ajax({
+        type: "GET",
+        url: "{{ route('sale.getDataUser') }}",
+        'data': {cpf: cpf},
+        datatype: "json",
+        success: function(data) {
+
+        if(data) {
+            $(".id").val(data.id);
+            $(".name").val(data.name);
+            $(".email").val(data.email);
+            console.log(data.name);
+            $(".resp").hide();
+        }
+    },
+        error: function (data) {
+            $(".resp").show();
+            $(".resp").html("Não há nenhum registro com esse CPF, verifique se está correto!");
+            $(".resp").css({"background-color": "#f8d7da","color": "#721c24", "text-align" : "center", "font-size": "17px", "border-radius": "5px", "border-color" : "#f5c6c"});
+            // console.log("error na parada");
+
+            }
+        });
+    });
+// $(document).ready(function(){
+    
+// });
 </script>
 
 @endsection

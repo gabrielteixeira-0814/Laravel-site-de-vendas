@@ -114,12 +114,23 @@ class SaleController extends Controller
 
         $listIUserModel = app(User::class);
         $listProductModel = app(Product::class);
+        $findSaleModel = app(Sale::class);
 
          // List Users/Client
         $listUser = $listIUserModel->all();
         $listProduct = $listProductModel->all();
 
-        return view('crud_sales', compact ('id', 'page','route', 'method','listUser', 'listProduct'));
+        $sale = $findSaleModel->find($id);
+
+        // Encontrar o usuário da venda
+
+        $listSale = $findSaleModel::with(['saleUser'])->get();
+
+
+        //$findUserSale = $listIUserModel->find($sale->idUser);
+
+        return $listSale;
+        return view('crud_sales', compact ('id', 'page','route', 'method','listUser', 'listProduct', 'sale'));
     }
 
     /**
