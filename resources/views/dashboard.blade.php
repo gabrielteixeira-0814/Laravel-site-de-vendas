@@ -85,6 +85,7 @@
                         </td>
                         <td>
                             <a href='{{route('sale.edit',$sale->id)}}' class='btn btn-primary'>Editar</a>
+                            <a href="{{route('sale.deleteEditsale',$sale->id)}}" class='btn btn-danger'>Deletar</a>
                         </td>
                     </tr>
                 @endforeach

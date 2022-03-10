@@ -222,4 +222,21 @@ class SaleController extends Controller
 
         return response()->json($findUser[0]);
     }
+
+    public function deleteEditsale($id)
+    {
+        $status = 0;
+        $sale = app(Sale::class);
+        $findSale = $sale->find($id);
+
+        $data['status'] = $status;
+
+        if($findSale) {
+            $findSale->update($data);
+            return back()->with('success', 'Venda deletada com sucesso.');
+        }else {
+            return back()->with('error', 'Error ao tenta escluir a venda. Tente novamente!');
+
+        }
+    }
 }
