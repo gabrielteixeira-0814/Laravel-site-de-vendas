@@ -29,8 +29,48 @@ class DashboardController extends Controller
         // List Sales
         $listSale = $listSaleModel::with(['product'])->where('status', 1)->orderBy('created_at', 'desc')->paginate(5);
 
-        // return  $listUser;
-        return view('dashboard', compact('listUser', 'listProduct', 'listSale'));
+        // resultado de vendas
+
+        $getOkaySale = $listSaleModel->where('status_sales','Okay')->where('status',1)->get();
+        $getCalledSale = $listSaleModel->where('status_sales','Called')->where('status',1)->get();
+        $getReturnedSale = $listSaleModel->where('status_sales','returned')->where('status',1)->get();
+
+
+        // Pegar a quantidade os resultado de vendas
+
+        // Okay Sale
+        $getQtdOkayCount = $getOkaySale->count();
+
+        // Called Sale
+        $getQtdCalledCount = $getCalledSale->count();
+
+        // Returned Sale
+        $getQtdReturnedCount = $getReturnedSale->count();
+
+        // Pegar o total de valores dos resultado de vendas
+        
+        // Okay Sale
+        $getTotalOkaySale = 0;
+        foreach ($getOkaySale as $value) {
+            // Pegando os valores e diminuindo pelo disconto e somando todos
+            $getTotalOkaySale += $value->valueSale - $value->discount;
+        }
+
+        // Called Sale
+        $getTotalCalledSale = 0;
+        foreach ($getCalledSale as $value) {
+            // Pegando os valores e diminuindo pelo disconto e somando todos
+            $getTotalCalledSale += $value->valueSale - $value->discount;
+        }
+
+        // Called Sale
+        $getTotalReturnedSale = 0;
+        foreach ($getReturnedSale as $value) {
+            // Pegando os valores e diminuindo pelo disconto e somando todos
+            $getTotalReturnedSale += $value->valueSale - $value->discount;
+        }
+
+        return view('dashboard', compact('listUser', 'listProduct', 'listSale', 'getQtdOkayCount', 'getQtdCalledCount', 'getQtdReturnedCount', 'getTotalOkaySale', 'getTotalCalledSale', 'getTotalReturnedSale'));
     }
 
     /**

@@ -79,11 +79,8 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        // return 'oola shooow';
-
         $findProductModel = app(Product::class);
         $product = $findProductModel->find($id);
-        // return $product;
         $product->delete();
 
        return back()->with('success', 'Produto deletado com sucesso.');

@@ -115,10 +115,10 @@
                         Vendidos
                     </td>
                     <td>
-                        100
+                        {{ $getQtdOkayCount }}
                     </td>
                     <td>
-                        R$ 100,00
+                        R$ {{ str_replace('.', ',', $getTotalOkaySale) }}
                     </td>
                 </tr>
                 <tr>
@@ -126,10 +126,10 @@
                         Cancelados
                     </td>
                     <td>
-                        120
+                        {{ $getQtdCalledCount }}
                     </td>
                     <td>
-                        R$ 100,00
+                        R$ {{ str_replace('.', ',', $getTotalCalledSale) }}
                     </td>
                 </tr>
                 <tr>
@@ -137,10 +137,10 @@
                         Devoluções
                     </td>
                     <td>
-                        120
+                        {{ $getQtdReturnedCount }} 
                     </td>
                     <td>
-                        R$ 100,00
+                        R$ {{ str_replace('.', ',', $getTotalReturnedSale) }}
                     </td>
                 </tr>
             </table>

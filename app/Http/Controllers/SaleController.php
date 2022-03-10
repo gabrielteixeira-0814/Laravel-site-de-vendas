@@ -236,7 +236,6 @@ class SaleController extends Controller
             return back()->with('success', 'Venda deletada com sucesso.');
         }else {
             return back()->with('error', 'Error ao tenta escluir a venda. Tente novamente!');
-
         }
     }
 }
