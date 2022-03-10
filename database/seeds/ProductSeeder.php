@@ -11,22 +11,19 @@ class ProductSeeder extends Seeder
      */
     public function run()
     {
-        $product = \App\Product::firstOrCreate(['name'=>'Perfect Caps'], ['description'=>'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut a.',
-         'valueProduct' => 100,
-         'statusSales' => 'Vendidos',
-         'status' => 0,
+        $product = \App\Product::firstOrCreate(['name'=>'Curso de Robôtica'], ['description'=>'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut a.',
+         'price' => 10.50,
+         'status' => 1,
          ]);
  
-         $product = \App\Product::firstOrCreate(['name'=>'Nature Caps'], ['description'=>'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-         'valueProduct' => 250,
-         'statusSales' => 'Cancelados',
-         'status' => 0,
+         $product = \App\Product::firstOrCreate(['name'=>'Curso de Inglês'], ['description'=>'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+         'price' => 50,
+         'status' => 1,
          ]);
 
-         $product = \App\Product::firstOrCreate(['name'=>'Libid Caps'], ['description'=>'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-         'valueProduct' => 500.50,
-         'statusSales' => 'Vendidos',
-         'status' => 0,
+         $product = \App\Product::firstOrCreate(['name'=>'Curso de Libras'], ['description'=>'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+         'price' => 45,
+         'status' => 1,
          ]);
 
          echo "Produtos foram criados! \n";

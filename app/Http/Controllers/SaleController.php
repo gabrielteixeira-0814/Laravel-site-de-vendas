@@ -195,13 +195,11 @@ class SaleController extends Controller
         // return $sale;
         
         if($sale) {
-            return 'ola';
             $sale->update($validatedData);
             return back()->with('success', 'Venda editada com sucesso.');
         }else {
             return back()->with('error', 'Venda não foi editada!');
         }
-
     }
 
     /**
