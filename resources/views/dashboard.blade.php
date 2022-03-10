@@ -69,7 +69,7 @@
                
                     <tr>
                         <td>
-                            {{ $sale->product->id }}
+                            {{ $sale->id }}
                         </td>
                         <td>
                             {{ $sale->product->name }}

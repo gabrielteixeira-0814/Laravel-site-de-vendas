@@ -56,9 +56,15 @@
                 <div class="form-group">
                     <label for="product">Produto</label>
                     <select id="product" class="form-control" name="product"> 
-                        <option selected>Escolha...</option>
-                        @foreach ($listProduct as $product)
-                            <option value="{{ $product->id }}">{{ $product->name }}</option>
+                       
+                        @if ($dataProduct != '')
+                            
+                        @else
+                            <option selected>Escolha...</option>
+                        @endif
+
+                        @foreach ($listProduct as $product) 
+                            <option value="{{ $product->id }}" {{ $product->id ==  $dataProduct->id ? 'selected' : '' }}>{{ $product->name }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -72,15 +78,22 @@
                 </div>
                 <div class="form-group">
                     <label for="discount">Desconto</label>
-                    <input type="text" class="form-control" id="discount" placeholder="100,00 ou menor" name="discount" value="{{ $dataSale != '' ? $dataSale->discount :  old('discount') }}">
+                    <input type="text" class="form-control" id="discount" placeholder="100,00 ou menor" name="discount" value="{{ $dataSale != '' ? str_replace('.', ',', $dataSale->discount) :  old('discount') }}
+                    ">
                 </div>
                 <div class="form-group">
                     <label for="status_sales">Status</label>
                     <select id="status_sales" class="form-control" name="status_sales">
-                        <option selected>Escolha...</option>
-                        <option value="Okay">Aprovado</option>
-                        <option value="Called">Cancelado</option>
-                        <option value="returned">Devolvido</option>
+
+                        @if ($dataSale != '')
+                            
+                        @else
+                            <option selected>Escolha...</option>
+                        @endif
+
+                        <option value="Okay" {{ $dataSale->status_sales == 'Okay' ? 'selected' : '' }}>Aprovado</option>
+                        <option value="Called" {{ $dataSale->status_sales == 'Called' ? 'selected' : '' }}>Cancelado</option>
+                        <option value="returned" {{ $dataSale->status_sales == 'returned' ? 'selected' : '' }}>Devolvido</option>
                     </select>
                 </div>
                 <button type="submit" class="btn btn-primary">Salvar</button>
