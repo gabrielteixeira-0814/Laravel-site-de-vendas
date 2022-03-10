@@ -31,6 +31,7 @@ class SaleController extends Controller
         $method = 'POST';
         $dataUser = '';
         $dataProduct = '';
+        $dataSale = '';
 
         $listIUserModel = app(User::class);
         $listProductModel = app(Product::class);
@@ -39,7 +40,7 @@ class SaleController extends Controller
         $listUser = $listIUserModel->all();
         $listProduct = $listProductModel->all();
 
-        return view('crud_sales', compact('listProduct', 'page', 'route', 'method','dataUser'));
+        return view('crud_sales', compact('listProduct', 'page', 'route', 'method','dataUser', 'dataSale', 'dataProduct'));
     }
 
     /**

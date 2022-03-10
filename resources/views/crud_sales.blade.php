@@ -43,7 +43,6 @@
                     <label for="cpf">CPF</label>
                     <input type="text" class="form-control cpf" id="cpf" value="{{ $dataUser != '' ? $dataUser->cpf :  old('cpf') }}" placeholder="99999999999" name="cpf" {{ $dataUser != '' ? "disabled" :  "" }}>
                 </div>
-                {{ $dataUser->id}}
                 <input type="hidden" class="form-control id" id="id" name="id" value="{{ $dataUser != '' ? $dataUser->id :  old('id') }}">
                 <div class="form-group">
                     <label for="name">Nome do cliente</label>
@@ -65,7 +64,7 @@
                         @endif
 
                         @foreach ($listProduct as $product) 
-                            <option value="{{ $product->id }}" {{ $product->id ==  $dataProduct->id ? 'selected' : '' }}>{{ $product->name }}</option>
+                            <option value="{{ $product->id }}" {{ $dataProduct != '' && $product->id ==  $dataProduct->id ? 'selected' : '' }}>{{ $product->name }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -92,9 +91,9 @@
                             <option selected>Escolha...</option>
                         @endif
 
-                        <option value="Okay" {{ $dataSale->status_sales == 'Okay' ? 'selected' : '' }}>Aprovado</option>
-                        <option value="Called" {{ $dataSale->status_sales == 'Called' ? 'selected' : '' }}>Cancelado</option>
-                        <option value="returned" {{ $dataSale->status_sales == 'returned' ? 'selected' : '' }}>Devolvido</option>
+                        <option value="Okay" {{ $dataSale != '' && $dataSale->status_sales == 'Okay' ? 'selected' : '' }}>Aprovado</option>
+                        <option value="Called" {{ $dataSale != '' && $dataSale->status_sales == 'Called' ? 'selected' : '' }}>Cancelado</option>
+                        <option value="returned" {{ $dataSale != '' && $dataSale->status_sales == 'returned' ? 'selected' : '' }}>Devolvido</option>
                     </select>
                 </div>
                 <button type="submit" class="btn btn-primary">Salvar</button>
