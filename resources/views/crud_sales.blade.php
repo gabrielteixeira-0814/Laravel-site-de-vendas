@@ -43,7 +43,8 @@
                     <label for="cpf">CPF</label>
                     <input type="text" class="form-control cpf" id="cpf" value="{{ $dataUser != '' ? $dataUser->cpf :  old('cpf') }}" placeholder="99999999999" name="cpf" {{ $dataUser != '' ? "disabled" :  "" }}>
                 </div>
-                <input type="hidden" class="form-control id" id="id" name="id">
+                {{ $dataUser->id}}
+                <input type="hidden" class="form-control id" id="id" name="id" value="{{ $dataUser != '' ? $dataUser->id :  old('id') }}">
                 <div class="form-group">
                     <label for="name">Nome do cliente</label>
                     <input type="text" class="form-control name" id="name" name="name" disabled="disabled" value="{{ $dataUser != '' ? $dataUser->name :  old('name') }}">

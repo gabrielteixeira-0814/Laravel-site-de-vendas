@@ -146,7 +146,62 @@ class SaleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $mensagens = [
+            'quantity.required' => 'A quantidade é obrigatório!',
+            'quantity.numeric' => 'É necessário que seja um número!',
+            
+            'discount.required' => 'O desconto é obrigatório!',
+            'discount.regex' => 'O formato do desconto é inválido.',
+
+            'status_sales.required' => 'O status é obrigatório!',
+        ];
+
+        $validatedData = $request->validate([
+            'quantity' => 'required|numeric',
+            'discount' => 'required|regex:/^\d+(\,\d{1,2})?$/',
+            'status_sales' => 'required|string|max:255', 
+        ], $mensagens);
+
+        $validatedData = $request->validate([
+            'quantity' => 'required|numeric',
+            'discount' => 'required|regex:/^\d+(\,\d{1,2})?$/',
+            'status_sales' => 'required|string|max:255', 
+        ], $mensagens);
+        
+        // Convertendo valor dinheiro para formato correto
+        $vl_discount = $request->discount;
+        $vl_discount = str_replace(',', '.', $vl_discount);
+
+        // Encontrar o usuário
+        $findUser = app(User::class);
+        $valueSale = $findUser->where('id', $request->id)->select('id','name','email')->get();
+        
+        // Encontrar um produto
+        $findProduct = app(Product::class);
+        $valueProduct = $findProduct->where('id', $request->product)->select('id','name','price')->get();
+
+        $validatedData['quantity'] = $request->quantity;
+        $validatedData['discount'] = $vl_discount;
+        $validatedData['status_sales'] = $request->status_sales;
+        $validatedData['idUser'] = $request->id;
+        $validatedData['idProduct'] = $request->product;
+        $validatedData['dateSale'] = $request->date;
+        $validatedData['valueSale'] = $valueProduct[0]['price'];
+        $validatedData['status'] = 1;
+
+        // return $validatedData;
+        $sale = Sale::where('id', $id)->first();
+
+        // return $sale;
+        
+        if($sale) {
+            return 'ola';
+            $sale->update($validatedData);
+            return back()->with('success', 'Venda editada com sucesso.');
+        }else {
+            return back()->with('error', 'Venda não foi editada!');
+        }
+
     }
 
     /**
