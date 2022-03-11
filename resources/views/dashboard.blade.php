@@ -9,7 +9,7 @@
     </div>
     @endif
     <h1>Dashboard de vendas</h1>
-    {{ $search }}
+    {{-- {{ $search }} --}}
     <div class='card mt-3'>
         <div class='card-body'>
             <h5 class="card-title mb-5">Tabela de vendas
@@ -22,7 +22,7 @@
                                 <div class="input-group-text">Clientes</div>
                             </div>
                             <select class="form-control" id="inlineFormInputName" name="cpf">
-                                <option>Clientes</option>
+                                <option value="">Clientes</option>
                                 @foreach ($listUser as $listUserCpf)
                                     <option value="{{ $listUserCpf->cpf }}">{{ $listUserCpf->cpf }} - {{ $listUserCpf->name }}</option>
                                 @endforeach

@@ -30,20 +30,55 @@ class DashboardController extends Controller
         $listProduct = $listProductModel->where('status', 1)->orderBy('created_at', 'desc')->paginate(5);
     
         // Filtro
-        if($request) {
+        if($request->get('cpf') || $request->get('date')) {
             $cpf = $request->get('cpf');
             $date = $request->get('date');
 
-            if($cpf != '') {
-                
+            $dateSearch = str_replace(' ', '', $date);
+
+            // Encontrar usuario pelo cpf
+            $findUser = $listIUserModel->where('cpf', $cpf)->get();
+
+            if($cpf != '' && $date != '') {
+
+                $date = explode(" - ", $date);
+                $dateInit = date("Y-m-d", strtotime($date[0]));
+                $dateFin = date("Y-m-d", strtotime($date[1]));
+
+                // List Sales
+                $listSale = $listSaleModel::with(['product'])->where('idUser', $findUser[0]['id'])->where([
+                    ['dateSale', '>=', $dateInit],
+                    ['dateSale', '<=', $dateFin],
+                ])->orderBy('created_at', 'desc')->paginate(5);
+
+            } else {
+
+                if($cpf != '') {
+                    // List Sales
+                    $listSale = $listSaleModel::with(['product'])->where('idUser', $findUser[0]['id'])->where('status', 1)->orderBy('created_at', 'desc')->paginate(5);
+                }
+
+                if($dateSearch != '') {
+                  
+                    $dateSearch = explode("-", $dateSearch);
+
+                    $dateInit = date("Y-m-d", strtotime($dateSearch[0]));
+                    $dateFin = date("Y-m-d", strtotime($dateSearch[1]));
+
+                    // $teste = str_replace(' ', '', $dateFin);
+
+                    return "$dateFin";
+
+                    // List Sales
+                    $listSale = $listSaleModel::with(['product'])->where([
+                        ['dateSale', '>=','2022-03-01'],
+                        ['dateSale', '<=', '2022-03-10'],
+                    ])->orderBy('created_at', 'desc')->paginate(5);
+                }
             }
-
-            // List Sales
-            $listSale = $listSaleModel::with(['product'])->where('status', 1)->orderBy('created_at', 'desc')->paginate(5);
-
         }else {
 
-            // List Sales
+            // List Sales sem filtro
             $listSale = $listSaleModel::with(['product'])->where('status', 1)->orderBy('created_at', 'desc')->paginate(5);
         }
        
@@ -52,7 +87,6 @@ class DashboardController extends Controller
         $getOkaySale = $listSaleModel->where('status_sales','Okay')->where('status',1)->get();
         $getCalledSale = $listSaleModel->where('status_sales','Called')->where('status',1)->get();
         $getReturnedSale = $listSaleModel->where('status_sales','returned')->where('status',1)->get();
-
 
         // Pegar a quantidade os resultado de vendas
 
@@ -91,7 +125,7 @@ class DashboardController extends Controller
         }
         $getTotalReturnedSale = number_format($getTotalReturnedSale, 2); 
 
-        return view('dashboard', compact('listUser', 'listProduct', 'listSale', 'getQtdOkayCount', 'getQtdCalledCount', 'getQtdReturnedCount', 'getTotalOkaySale', 'getTotalCalledSale', 'getTotalReturnedSale', 'search'));
+        return view('dashboard', compact('listUser', 'listProduct', 'listSale', 'getQtdOkayCount', 'getQtdCalledCount', 'getQtdReturnedCount', 'getTotalOkaySale', 'getTotalCalledSale', 'getTotalReturnedSale'));
     }
 
     /**
