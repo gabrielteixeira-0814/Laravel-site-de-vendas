@@ -20,10 +20,10 @@
                             <div class="input-group-prepend">
                                 <div class="input-group-text">Clientes</div>
                             </div>
-                            <select class="form-control" id="inlineFormInputName">
+                            <select class="form-control cpf" id="inlineFormInputName">
                                 <option>Clientes</option>
                                 @foreach ($listUser as $listUserCpf)
-                                    <option>{{ $listUserCpf->cpf }} - {{ $listUserCpf->name }}</option>
+                                    <option value="{{ $listUserCpf->cpf }}">{{ $listUserCpf->cpf }} - {{ $listUserCpf->name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -38,7 +38,7 @@
                         </div>
                     </div>
                     <div class="col-sm-1 my-1">
-                        <button type="submit" class="btn btn-primary" style='padding: 14.5px 16px;'>
+                        <button type="button" class="btn btn-primary search" style='padding: 14.5px 16px;'>
                             <i class='fa fa-search'></i></button>
                     </div>
                 </div>
@@ -183,4 +183,52 @@
 
         </div>
     </div>
+@endsection
+
+
+@section('script')
+  
+<script>
+
+    // $(document).ready(function(){
+    //     alert("Ola");
+    // });
+
+    $(".search").click(function(){
+
+        var cpf = $(".cpf").val();
+        var date = $(".date_range").val();
+        var dateArray = date.split(" - ");
+        var dateIni = dateArray[0];
+        var dateFin = dateArray[1];
+        console.log(dateIni);
+        console.log(dateFin);
+
+    //     $.ajax({
+    //     type: "GET",
+    //     url: "{{ route('sale.getDataUser') }}",
+    //     'data': {cpf: cpf},
+    //     datatype: "json",
+    //     success: function(data) {
+
+    //     if(data) {
+    //         $(".id").val(data.id);
+    //         $(".name").val(data.name);
+    //         $(".email").val(data.email);
+    //         console.log(data.name);
+    //         $(".resp").hide();
+    //     }
+    // },
+    //     error: function (data) {
+    //         $(".resp").show();
+    //         $(".resp").html("Não há nenhum registro com esse CPF, verifique se está correto!");
+    //         $(".resp").css({"background-color": "#f8d7da","color": "#721c24", "text-align" : "center", "font-size": "17px", "border-radius": "5px", "border-color" : "#f5c6c"});
+    //         // console.log("error na parada");
+
+    //         }
+    //     });
+    });
+
+</script>
+
 @endsection

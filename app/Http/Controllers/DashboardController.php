@@ -55,6 +55,7 @@ class DashboardController extends Controller
             // Pegando os valores e diminuindo pelo disconto e somando todos
             $getTotalOkaySale += $value->valueSale - $value->discount;
         }
+        $getTotalOkaySale = number_format($getTotalOkaySale, 2);
 
         // Called Sale
         $getTotalCalledSale = 0;
@@ -62,6 +63,7 @@ class DashboardController extends Controller
             // Pegando os valores e diminuindo pelo disconto e somando todos
             $getTotalCalledSale += $value->valueSale - $value->discount;
         }
+        $getTotalCalledSale = number_format($getTotalCalledSale, 2);
 
         // Called Sale
         $getTotalReturnedSale = 0;
@@ -69,6 +71,7 @@ class DashboardController extends Controller
             // Pegando os valores e diminuindo pelo disconto e somando todos
             $getTotalReturnedSale += $value->valueSale - $value->discount;
         }
+        $getTotalReturnedSale = number_format($getTotalReturnedSale, 2); 
 
         return view('dashboard', compact('listUser', 'listProduct', 'listSale', 'getQtdOkayCount', 'getQtdCalledCount', 'getQtdReturnedCount', 'getTotalOkaySale', 'getTotalCalledSale', 'getTotalReturnedSale'));
     }
