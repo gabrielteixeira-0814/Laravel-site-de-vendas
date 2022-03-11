@@ -9,6 +9,7 @@
     </div>
     @endif
     <h1>Dashboard de vendas</h1>
+    {{ $search }}
     <div class='card mt-3'>
         <div class='card-body'>
             <h5 class="card-title mb-5">Tabela de vendas
@@ -20,7 +21,7 @@
                             <div class="input-group-prepend">
                                 <div class="input-group-text">Clientes</div>
                             </div>
-                            <select class="form-control cpf" id="inlineFormInputName">
+                            <select class="form-control" id="inlineFormInputName" name="cpf">
                                 <option>Clientes</option>
                                 @foreach ($listUser as $listUserCpf)
                                     <option value="{{ $listUserCpf->cpf }}">{{ $listUserCpf->cpf }} - {{ $listUserCpf->name }}</option>
@@ -34,11 +35,11 @@
                             <div class="input-group-prepend">
                                 <div class="input-group-text">Período</div>
                             </div>
-                            <input type="text" class="form-control date_range" id="inlineFormInputGroupUsername" placeholder="Username">
+                            <input type="text" class="form-control date_range" id="inlineFormInputGroupUsername" name="date" placeholder="Username">
                         </div>
                     </div>
                     <div class="col-sm-1 my-1">
-                        <button type="button" class="btn btn-primary search" style='padding: 14.5px 16px;'>
+                        <button type="submit" class="btn btn-primary" style='padding: 14.5px 16px;'>
                             <i class='fa fa-search'></i></button>
                     </div>
                 </div>
@@ -185,8 +186,7 @@
     </div>
 @endsection
 
-
-@section('script')
+{{-- @section('script')
   
 <script>
 
@@ -214,19 +214,11 @@
         if(data) {
 
             console.log(data);
-            // $(".id").val(data.id);
-            // $(".name").val(data.name);
-            // $(".email").val(data.email);
-            // console.log(data.name);
-            // $(".resp").hide();
+            
         }
     },
         error: function (data) {
             console.log(data);
-            // $(".resp").show();
-            // $(".resp").html("Não há nenhum registro com esse CPF, verifique se está correto!");
-            // $(".resp").css({"background-color": "#f8d7da","color": "#721c24", "text-align" : "center", "font-size": "17px", "border-radius": "5px", "border-color" : "#f5c6c"});
-            // // console.log("error na parada");
 
             }
         });
@@ -234,4 +226,4 @@
 
 </script>
 
-@endsection
+@endsection --}}

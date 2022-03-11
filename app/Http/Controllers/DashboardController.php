@@ -14,8 +14,11 @@ class DashboardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+
+        $cpf = '';
+        $date = '';
         $listIUserModel = app(User::class);
         $listProductModel = app(Product::class);
         $listSaleModel = app(Sale::class);
@@ -25,10 +28,25 @@ class DashboardController extends Controller
 
         // List Products
         $listProduct = $listProductModel->where('status', 1)->orderBy('created_at', 'desc')->paginate(5);
+    
+        // Filtro
+        if($request) {
+            $cpf = $request->get('cpf');
+            $date = $request->get('date');
 
-        // List Sales
-        $listSale = $listSaleModel::with(['product'])->where('status', 1)->orderBy('created_at', 'desc')->paginate(5);
+            if($cpf != '') {
+                
+            }
 
+            // List Sales
+            $listSale = $listSaleModel::with(['product'])->where('status', 1)->orderBy('created_at', 'desc')->paginate(5);
+
+        }else {
+
+            // List Sales
+            $listSale = $listSaleModel::with(['product'])->where('status', 1)->orderBy('created_at', 'desc')->paginate(5);
+        }
+       
         // resultado de vendas
 
         $getOkaySale = $listSaleModel->where('status_sales','Okay')->where('status',1)->get();
@@ -73,7 +91,7 @@ class DashboardController extends Controller
         }
         $getTotalReturnedSale = number_format($getTotalReturnedSale, 2); 
 
-        return view('dashboard', compact('listUser', 'listProduct', 'listSale', 'getQtdOkayCount', 'getQtdCalledCount', 'getQtdReturnedCount', 'getTotalOkaySale', 'getTotalCalledSale', 'getTotalReturnedSale'));
+        return view('dashboard', compact('listUser', 'listProduct', 'listSale', 'getQtdOkayCount', 'getQtdCalledCount', 'getQtdReturnedCount', 'getTotalOkaySale', 'getTotalCalledSale', 'getTotalReturnedSale', 'search'));
     }
 
     /**
@@ -142,24 +160,19 @@ class DashboardController extends Controller
         //
     }
 
-    public function getSeachSale()
-    {
-        $cpf = $_GET['cpf'];
-        $dateIni = $_GET['dateIni'];
-        $dateFin = $_GET['dateFin'];
+    // public function getSeachSale()
+    // {
+    //     $cpf = $_GET['cpf'];
+    //     $dateIni = $_GET['dateIni'];
+    //     $dateFin = $_GET['dateFin'];
 
-        $user = app(User::class);
-        $findUser = $user->where('cpf', $cpf)->select('id','cpf','name','email')->get();
+    //     $user = app(User::class);
+    //     $findUser = $user->where('cpf', $cpf)->select('id','cpf','name','email')->get();
         
-
-        // List Sales
-        $listSaleModel = app(Sale::class);
-        $listSale = $listSaleModel::with(['product'])->where('idUser', $findUser[0]['id'])->where('status', 1)->orderBy('created_at', 'desc')->get();
-        
-      
-        //  $listSale = $listSaleModel::with(['product'])->where('idUser', $findUser->id)->where('status', 1)->orderBy('created_at', 'desc')->paginate(5);
-
-        return response()->json($listSale);
-
-    }
+    //     // List Sales
+    //     $listSaleModel = app(Sale::class);
+    //     $listSale = $listSaleModel::with(['product'])->where('idUser', $findUser[0]['id'])->where('status', 1)->orderBy('created_at', 'desc')->get();
+    
+    //     return response()->json($listSale);
+    // }
 }
