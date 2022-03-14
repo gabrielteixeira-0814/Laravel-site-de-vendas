@@ -9,14 +9,15 @@
     </div>
     @endif
     <h1>Dashboard de vendas</h1>
-    {{-- {{ $search }} --}}
+    
+    {{ $withFilter }}
     <div class='card mt-3'>
         <div class='card-body'>
             <h5 class="card-title mb-5">Tabela de vendas
                 <a href="{{ route('sale.create') }}" class='btn btn-secondary float-right btn-sm rounded'><i class='fa fa-plus'></i></a></h5>
             <form>
                 <div class="form-row align-items-center">
-                    <div class="col-sm-5 my-1">
+                    <div class="col-sm-4 my-1">
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <div class="input-group-text">Clientes</div>
@@ -29,26 +30,35 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col-sm-6 my-1">
-                        <label class="sr-only" for="inlineFormInputGroupUsername">Username</label>
+                    <div class="col-sm-3 my-1">
                         <div class="input-group">
                             <div class="input-group-prepend">
-                                <div class="input-group-text">Período</div>
+                                <div class="input-group-text">Início</div>
                             </div>
-                            <input type="text" class="form-control date_range" id="inlineFormInputGroupUsername" name="date" placeholder="Username">
+                            <input type="date" class="form-control" id="" name="dateIni" placeholder="Username">
                         </div>
                     </div>
-                    <div class="col-sm-1 my-1">
-                        <button type="submit" class="btn btn-primary" style='padding: 14.5px 16px;'>
-                            <i class='fa fa-search'></i></button>
+                    <div class="col-sm-3 my-1">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">Final</div>
+                            </div>
+                            <input type="date" class="form-control" id="" name="dateFin" placeholder="Username">
+                        </div>
                     </div>
+                   
+                       
+                        <div class="mx-2">
+                            <button type="submit" class="btn btn-primary" style='padding: 14.5px 16px;'>
+                                <i class='fa fa-search'></i></button>
+                        </div>
+                        <div class="my-1">
+                            <button type="submit" class="btn btn-warning text-light" style='padding: 10px 16px;'>Limpar</button>
+                        </div>
                 </div>
             </form>
             <table class='table'>
                 <tr>
-                    <th scope="col">
-                        id
-                    </th>
                     <th scope="col">
                         Produto
                     </th>
@@ -56,7 +66,13 @@
                         Data
                     </th>
                     <th scope="col">
-                        Hora
+                        Valor do produto
+                    </th>
+                    <th scope="col">
+                        Quantidade
+                    </th>
+                    <th scope="col">
+                        Valor do desconto
                     </th>
                     <th scope="col">
                         Valor
@@ -70,16 +86,19 @@
                
                     <tr>
                         <td>
-                            {{ $sale->id }}
-                        </td>
-                        <td>
                             {{ $sale->product->name }}
                         </td>
                         <td>
                             {{ date("d/m/Y", strtotime($sale->dateSale)) }} 
                         </td>
                         <td>
-                            {{ date("H:i:s", strtotime($sale->dateSale)) }} 
+                            R$ {{ str_replace('.', ',', $sale->product->price) }}
+                        </td>
+                        <td  class="pl-5">
+                            {{ $sale->quantity }}
+                        </td>
+                        <td>
+                            R$ {{ str_replace('.', ',', $sale->discount) }}
                         </td>
                         <td>
                             R$ {{ str_replace('.', ',', $sale->valueSale) }}

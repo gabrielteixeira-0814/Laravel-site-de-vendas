@@ -16,9 +16,8 @@ class DashboardController extends Controller
      */
     public function index(Request $request)
     {
-
         $cpf = '';
-        $date = '';
+        $withFilter = '';
         $listIUserModel = app(User::class);
         $listProductModel = app(Product::class);
         $listSaleModel = app(Sale::class);
@@ -28,58 +27,47 @@ class DashboardController extends Controller
 
         // List Products
         $listProduct = $listProductModel->where('status', 1)->orderBy('created_at', 'desc')->paginate(5);
-    
+
         // Filtro
-        if($request->get('cpf') || $request->get('date')) {
+        if($request->get('cpf') || $request->get('dateIni' ) || $request->get('dateFin')) {
+
             $cpf = $request->get('cpf');
-            $date = $request->get('date');
-
-            $dateSearch = str_replace(' ', '', $date);
-
+            $dateIni = $request->get('dateIni');
+            $dateFin = $request->get('dateFin');
+            
             // Encontrar usuario pelo cpf
             $findUser = $listIUserModel->where('cpf', $cpf)->get();
 
-            if($cpf != '' && $date != '') {
-
-                $date = explode(" - ", $date);
-                $dateInit = date("Y-m-d", strtotime($date[0]));
-                $dateFin = date("Y-m-d", strtotime($date[1]));
+            if($cpf != '' && $dateIni != '' && $dateFin != '') {
 
                 // List Sales
                 $listSale = $listSaleModel::with(['product'])->where('idUser', $findUser[0]['id'])->where([
-                    ['dateSale', '>=', $dateInit],
+                    ['dateSale', '>=', $dateIni],
                     ['dateSale', '<=', $dateFin],
                 ])->orderBy('created_at', 'desc')->paginate(5);
 
             } else {
-
                 if($cpf != '') {
                     // List Sales
                     $listSale = $listSaleModel::with(['product'])->where('idUser', $findUser[0]['id'])->where('status', 1)->orderBy('created_at', 'desc')->paginate(5);
                 }
 
-                if($dateSearch != '') {
-                  
-                    $dateSearch = explode("-", $dateSearch);
-
-                    $dateInit = date("Y-m-d", strtotime($dateSearch[0]));
-                    $dateFin = date("Y-m-d", strtotime($dateSearch[1]));
-
-                    // $teste = str_replace(' ', '', $dateFin);
-
-                    return "$dateFin";
-
+                if($dateIni != '' && $dateFin != '') {
+                
                     // List Sales
                     $listSale = $listSaleModel::with(['product'])->where([
-                        ['dateSale', '>=','2022-03-01'],
-                        ['dateSale', '<=', '2022-03-10'],
+                        ['dateSale', '>=', $dateIni],
+                        ['dateSale', '<=', $dateFin],
                     ])->orderBy('created_at', 'desc')->paginate(5);
                 }
             }
+
         }else {
 
             // List Sales sem filtro
             $listSale = $listSaleModel::with(['product'])->where('status', 1)->orderBy('created_at', 'desc')->paginate(5);
+
+            // return  $listSale;
         }
        
         // resultado de vendas
@@ -125,7 +113,7 @@ class DashboardController extends Controller
         }
         $getTotalReturnedSale = number_format($getTotalReturnedSale, 2); 
 
-        return view('dashboard', compact('listUser', 'listProduct', 'listSale', 'getQtdOkayCount', 'getQtdCalledCount', 'getQtdReturnedCount', 'getTotalOkaySale', 'getTotalCalledSale', 'getTotalReturnedSale'));
+        return view('dashboard', compact('listUser', 'listProduct', 'listSale', 'getQtdOkayCount', 'getQtdCalledCount', 'getQtdReturnedCount', 'getTotalOkaySale', 'getTotalCalledSale', 'getTotalReturnedSale', 'withFilter'));
     }
 
     /**
@@ -209,4 +197,7 @@ class DashboardController extends Controller
     
     //     return response()->json($listSale);
     // }
+
 }
+
+    

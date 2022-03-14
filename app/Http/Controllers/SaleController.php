@@ -73,17 +73,18 @@ class SaleController extends Controller
         $vl_discount = $request->discount;
         $vl_discount = str_replace(',', '.', $vl_discount);
 
+        // Converte a quantidade em string para number 
+        $numberQuantity = intval($request->quantity);
+
         $findProduct = app(Product::class);
         $valueProduct = $findProduct->where('id', $request->product)->select('id','name','price')->get();
 
         $validatedData['idUser'] = $request->id;
         $validatedData['idProduct'] = $request->product;
         $validatedData['dateSale'] = $request->date;
-        $validatedData['valueSale'] = $valueProduct[0]['price'];
+        $validatedData['valueSale'] = ($valueProduct[0]['price'] * $numberQuantity) - $vl_discount;
         $validatedData['discount'] = $vl_discount;
         $validatedData['status'] = 1;
-
-       // return $validatedData;
 
         $createUser = Sale::create($validatedData);
 
@@ -109,11 +110,15 @@ class SaleController extends Controller
      */
     public function edit($id)
     {
+        $idade = "41";
+        $nome =  "Gabriel";
+
         $id = $id;
         $page = "edit";
         $route = 'sale.update';
         $method = 'PUT';
 
+        $soma = $idade + 7;
 
         $listIUserModel = app(User::class);
         $listProductModel = app(Product::class);
