@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use App\User;
+use App\Product;
+use App\Sale;
 
 class KpisController extends Controller
 {
@@ -16,7 +18,12 @@ class KpisController extends Controller
      */
     public function index()
     {
-        // 
+        $listProductModel = app(Product::class);
+        $listProduct = $listProductModel->all();
+
+        return $listProduct;
+        return view('kpis');
+       
     }
 
     /**
