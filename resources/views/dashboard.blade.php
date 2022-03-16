@@ -83,7 +83,6 @@
                 </tr>
 
                 @foreach ($listSale as $sale)
-               
                     <tr>
                         <td>
                             {{ $sale->product->name }}
@@ -110,7 +109,6 @@
                     </tr>
                 @endforeach
                 </tr>
-                
             </table>
             {{ $listSale->links() }}
         </div>
