@@ -18,11 +18,18 @@ class KpisController extends Controller
      */
     public function index()
     {
+        // Lista de Produtos
         $listProductModel = app(Product::class);
         $listProduct = $listProductModel->all();
 
-        return $listProduct;
-        return view('kpis');
+        // Lista de Vendas
+        $listSaleModel = app(Sale::class);
+        $listSale = $listSaleModel->all();
+
+        $listSale = $listSaleModel::with(['product'])->get();
+
+        // return $listSale;
+        return view('kpis', compact('listProduct'));
        
     }
 

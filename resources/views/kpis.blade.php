@@ -9,7 +9,9 @@ ola
                 <canvas id="ChartBarProduct" width="200" height="100"></canvas>
             </div>
             <div class='col-md-4 p-2 border'>
-                ola
+                @foreach ($listProduct as $product)
+                    <p>{{$product->name}}</p>
+                @endforeach
             </div>
             <div class='col-md-4 p-2 border'>
                 ola
@@ -27,6 +29,7 @@ ola
     const myChart = new Chart(ctx, {
         type: 'bar',
         data: {
+            
             labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
             datasets: [{
                 label: 'Produtos',
