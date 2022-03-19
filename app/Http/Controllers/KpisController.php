@@ -26,51 +26,45 @@ class KpisController extends Controller
         $listSaleModel = app(Sale::class);
         $listSale = $listSaleModel->get();
 
-        $listSale = $listSaleModel::with(['product'])->get();
+        // $listSale = $listSaleModel::with(['product'])->get();
 
 
         // Criaando array de produtos para o gráfico
         $kpiProductName = [];
+        $kpiProductSaleQuant = [];
+        $getKpiProductSaleQuantCount = 0;
+
         foreach ($listProduct as $product) {
 
+            // Apenas pegar produtos que estão ativos
+            if($product->status == 1){
+
             $kpiProductName[] = $product->name;
+
+            // Buscando uma lista com as vendas feitas com o produto
+            $getKpiProductSaleQuant = $listSaleModel->where('idProduct', $product->id)->where('status',1)->get();
+
+            // Pegando a quantidade de vendas que aquele produto foi vendido
+
+            foreach ($getKpiProductSaleQuant as $item) {
+                $getKpiProductSaleQuantCount = $getKpiProductSaleQuantCount + $item->quantity;
+            }
+
+
+            // $getKpiProductSaleQuantCount = $getKpiProductSaleQuant->count();
+
+            // Inserindo dentro de uma lista os totais de vendas de cada produto
+            $kpiProductSaleQuant[] = $getKpiProductSaleQuantCount;
+
+            }
         }
-
-        $kpiSaleQuat = [];
-        $cursoRobotica = 0;
-        $cursoIngles = 0;
-        $cursoLibras = 0;
-
-        foreach ($listSale as $sale) {
-
-            // Curso de Robôtica
-            if($sale->product->name == "Curso de Robôtica"){
-                $cursoRobotica = $cursoRobotica + $sale->quantity;
-            }
-
-            // Curso de Inglês
-            if($sale->product->name == "Curso de Inglês"){
-                $cursoIngles = $cursoIngles + $sale->quantity;
-            }
-
-            // Curso de Libras
-            if($sale->product->name == "Curso de Libras"){
-                $cursoLibras = $cursoLibras + $sale->quantity;
-            }
-
-        }
-
-        $kpiSaleQuat[] = $cursoRobotica;
-        $kpiSaleQuat[] = $cursoIngles;
-        $kpiSaleQuat[] = $cursoLibras;
-
+        
         $kpiSale = array(
             "productNameKpi" => $kpiProductName,
-            "quantityProductKpi" => $kpiSaleQuat
+            "quantityProductKpi" => $kpiProductSaleQuant
             );
 
-
-        return  $kpiSale;
+        return $kpiSale;
 
         // return $listSale;
         return view('kpis', compact('listProduct'));
