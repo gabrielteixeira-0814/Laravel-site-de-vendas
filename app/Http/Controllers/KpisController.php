@@ -24,9 +24,53 @@ class KpisController extends Controller
 
         // Lista de Vendas
         $listSaleModel = app(Sale::class);
-        $listSale = $listSaleModel->all();
+        $listSale = $listSaleModel->get();
 
         $listSale = $listSaleModel::with(['product'])->get();
+
+
+        // Criaando array de produtos para o gráfico
+        $kpiProductName = [];
+        foreach ($listProduct as $product) {
+
+            $kpiProductName[] = $product->name;
+        }
+
+        $kpiSaleQuat = [];
+        $cursoRobotica = 0;
+        $cursoIngles = 0;
+        $cursoLibras = 0;
+
+        foreach ($listSale as $sale) {
+
+            // Curso de Robôtica
+            if($sale->product->name == "Curso de Robôtica"){
+                $cursoRobotica = $cursoRobotica + $sale->quantity;
+            }
+
+            // Curso de Inglês
+            if($sale->product->name == "Curso de Inglês"){
+                $cursoIngles = $cursoIngles + $sale->quantity;
+            }
+
+            // Curso de Libras
+            if($sale->product->name == "Curso de Libras"){
+                $cursoLibras = $cursoLibras + $sale->quantity;
+            }
+
+        }
+
+        $kpiSaleQuat[] = $cursoRobotica;
+        $kpiSaleQuat[] = $cursoIngles;
+        $kpiSaleQuat[] = $cursoLibras;
+
+        $kpiSale = array(
+            "productNameKpi" => $kpiProductName,
+            "quantityProductKpi" => $kpiSaleQuat
+            );
+
+
+        return  $kpiSale;
 
         // return $listSale;
         return view('kpis', compact('listProduct'));
