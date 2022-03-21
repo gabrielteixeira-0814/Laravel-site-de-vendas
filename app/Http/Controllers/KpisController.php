@@ -18,56 +18,8 @@ class KpisController extends Controller
      */
     public function index()
     {
-        // Lista de Produtos
-        $listProductModel = app(Product::class);
-        $listProduct = $listProductModel->all();
-
-        // Lista de Vendas
-        $listSaleModel = app(Sale::class);
-        $listSale = $listSaleModel->get();
-
-        // $listSale = $listSaleModel::with(['product'])->get();
-
-
-        // Criaando array de produtos para o gráfico
-        $kpiProductName = [];
-        $kpiProductSaleQuant = [];
-        $getKpiProductSaleQuantCount = 0;
-
-        foreach ($listProduct as $product) {
-
-            $getKpiProductSaleQuantCount = 0;
-
-            // Apenas pegar produtos que estão ativos
-            if($product->status == 1){
-
-                $kpiProductName[] = $product->name;
-
-                // Buscando uma lista com as vendas feitas com o produto
-                $getKpiProductSaleQuant = $listSaleModel->where('idProduct', $product->id)->where('status',1)->get();
-
-                // Pegando a quantidade de vendas que aquele produto foi vendido
-
-                foreach ($getKpiProductSaleQuant as $item) {
-                  
-                    // Contador da quantidade de produtos (Total)
-                    $getKpiProductSaleQuantCount = $getKpiProductSaleQuantCount + $item->quantity;
-                }
-
-                // Inserindo dentro de uma lista os totais de vendas de cada produto
-                $kpiProductSaleQuant[] = $getKpiProductSaleQuantCount;
-            }
-        }
         
-        $kpiSale = array(
-            "productNameKpi" => $kpiProductName,
-            "quantityProductKpi" => $kpiProductSaleQuant
-            );
-
-        return $kpiSale;
-
-        // return $listSale;
-        return view('kpis', compact('listProduct'));
+        return view('kpis');
        
     }
 
@@ -135,5 +87,53 @@ class KpisController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function getDataKpis()
+    {
+        // Lista de Produtos
+        $listProductModel = app(Product::class);
+        $listProduct = $listProductModel->all();
+
+        // Lista de Vendas
+        $listSaleModel = app(Sale::class);
+        $listSale = $listSaleModel->get();
+
+        // Criaando array de produtos para o gráfico
+        $kpiProductName = [];
+        $kpiProductSaleQuant = [];
+        $getKpiProductSaleQuantCount = 0;
+
+        foreach ($listProduct as $product) {
+
+            $getKpiProductSaleQuantCount = 0;
+
+            // Apenas pegar produtos que estão ativos
+            if($product->status == 1){
+
+                $kpiProductName[] = $product->name;
+
+                // Buscando uma lista com as vendas feitas com o produto
+                $getKpiProductSaleQuant = $listSaleModel->where('idProduct', $product->id)->where('status',1)->get();
+
+                // Pegando a quantidade de vendas que aquele produto foi vendido
+
+                foreach ($getKpiProductSaleQuant as $item) {
+                  
+                    // Contador da quantidade de produtos (Total)
+                    $getKpiProductSaleQuantCount = $getKpiProductSaleQuantCount + $item->quantity;
+                }
+
+                // Inserindo dentro de uma lista os totais de vendas de cada produto
+                $kpiProductSaleQuant[] = $getKpiProductSaleQuantCount;
+            }
+        }
+        
+        $kpiSale = array(
+            "productNameKpi" => $kpiProductName,
+            "quantityProductKpi" => $kpiProductSaleQuant
+            );
+
+        return response()->json($kpiSale);
     }
 }
