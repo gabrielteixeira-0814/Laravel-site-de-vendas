@@ -36,26 +36,26 @@ class KpisController extends Controller
 
         foreach ($listProduct as $product) {
 
+            $getKpiProductSaleQuantCount = 0;
+
             // Apenas pegar produtos que estão ativos
             if($product->status == 1){
 
-            $kpiProductName[] = $product->name;
+                $kpiProductName[] = $product->name;
 
-            // Buscando uma lista com as vendas feitas com o produto
-            $getKpiProductSaleQuant = $listSaleModel->where('idProduct', $product->id)->where('status',1)->get();
+                // Buscando uma lista com as vendas feitas com o produto
+                $getKpiProductSaleQuant = $listSaleModel->where('idProduct', $product->id)->where('status',1)->get();
 
-            // Pegando a quantidade de vendas que aquele produto foi vendido
+                // Pegando a quantidade de vendas que aquele produto foi vendido
 
-            foreach ($getKpiProductSaleQuant as $item) {
-                $getKpiProductSaleQuantCount = $getKpiProductSaleQuantCount + $item->quantity;
-            }
+                foreach ($getKpiProductSaleQuant as $item) {
+                  
+                    // Contador da quantidade de produtos (Total)
+                    $getKpiProductSaleQuantCount = $getKpiProductSaleQuantCount + $item->quantity;
+                }
 
-
-            // $getKpiProductSaleQuantCount = $getKpiProductSaleQuant->count();
-
-            // Inserindo dentro de uma lista os totais de vendas de cada produto
-            $kpiProductSaleQuant[] = $getKpiProductSaleQuantCount;
-
+                // Inserindo dentro de uma lista os totais de vendas de cada produto
+                $kpiProductSaleQuant[] = $getKpiProductSaleQuantCount;
             }
         }
         

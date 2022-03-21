@@ -50,7 +50,7 @@
                         <a href="{{ route('sale.create')}}" class="nav_link"> <i class='bx bx-bookmark nav_icon'></i>
                             <span class="nav_name">Vendas</span>
                         </a>
-                        <a href="#" class="nav_link"> <i class='bx bx-bar-chart-alt-2 nav_icon'></i>
+                        <a href="{{ route('kpis.index')}}" class="nav_link"> <i class='bx bx-bar-chart-alt-2 nav_icon'></i>
                             <span class="nav_name">Estatísticas</span>
                         </a>
                     </div>
