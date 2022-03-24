@@ -19,4 +19,6 @@ Route::get('getSeachSale', 'DashboardController@getSeachSale')->name('dashboard.
 
 
 // Rota para trazer dados para os Kpis com ajax Jquery
+// Quando for usar dentro de um arquivo blade usar o apelido (kpis.getDataKpis)
+// Quando for usar a rota detro do arquivo js usar (getDataKpis)
 Route::get('getDataKpis', 'KpisController@getDataKpis')->name('kpis.getDataKpis');
