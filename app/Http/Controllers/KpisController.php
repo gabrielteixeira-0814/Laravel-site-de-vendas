@@ -136,4 +136,15 @@ class KpisController extends Controller
 
         return response()->json($kpiSale);
     }
+
+    public function getDataKpisResultSales()
+    {
+        // Lista de Vendas
+        $listSaleModel = app(Sale::class);
+        $listSale = $listSaleModel->get();
+
+        $mes = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maior', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro','Dezembro'];
+
+        return response()->json($listSale);
+    }
 }

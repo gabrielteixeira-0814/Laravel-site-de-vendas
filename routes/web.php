@@ -22,3 +22,9 @@ Route::get('getSeachSale', 'DashboardController@getSeachSale')->name('dashboard.
 // Quando for usar dentro de um arquivo blade usar o apelido (kpis.getDataKpis)
 // Quando for usar a rota detro do arquivo js usar (getDataKpis)
 Route::get('getDataKpis', 'KpisController@getDataKpis')->name('kpis.getDataKpis');
+
+// Gráfico de barra resultados de vendas
+Route::get('getDataKpisResultSales', 'KpisController@getDataKpisResultSales')->name('kpis.getDataKpisResultSales');
+
+
+
