@@ -59,3 +59,89 @@
                 }
             });
     });
+
+
+
+    /*** Gráfico de barra das verndas e cancelados e devoluções dos meses do ano ***/
+    $(document).ready(function(){
+        $.ajax({
+            type: "GET",
+            url: "/getDataKpis",
+            'data': {},
+            datatype: "json",
+            success: function(data) {
+                if(data) {
+                    console.log(data);
+                    // Gráfico de barra de produtos mais ventidos
+                    const ctx = document.getElementById('ChartBarSaleMensais').getContext('2d');
+                    const myChart = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            
+                            labels: ['Janeiro', 'Fevereiro', 'Março'],
+
+
+                            
+                            datasets: [
+                                {
+                                label: 'Vendidos',
+                                data: data["quantityProductKpi"],
+                                backgroundColor: [
+                                    '#9AFF9A'
+                                ],
+                                borderColor: [
+                                    '#9AFF9A'
+                                ],
+                                borderWidth: 1
+                            },
+                            {
+                                label: 'Cancelados',
+                                data: data["quantityProductKpi"],
+                                backgroundColor: [
+                                    '#CD0000',
+                                ],
+                                borderColor: [
+                                    '#CD0000'
+                                ],
+                                borderWidth: 1
+                            },
+                            {
+                                label: 'Devoluções',
+                                data: data["quantityProductKpi"],
+                                backgroundColor: [
+                                    '#FFA54F',
+                                ],
+                                borderColor: [
+                                    '#FFA54F'
+                                ],
+                                borderWidth: 1
+                            },
+                        ]
+                        },
+                        options: {
+                            indexAxis: 'y',
+                            scales: {
+                                y: {
+                                    beginAtZero: true
+                                },
+                                x: {
+                                    grid: {
+                                    offset: true
+                                    }
+                                }
+                            },
+                            elements: {
+                                bar: {
+                                  borderWidth: 2,
+                                }
+                              },
+                              responsive: true,
+                        }
+                    });
+                }
+            },
+            error: function (data) {
+                console.log(data);
+                }
+            });
+    });
