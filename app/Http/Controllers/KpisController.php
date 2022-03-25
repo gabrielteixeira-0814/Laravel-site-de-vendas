@@ -141,10 +141,59 @@ class KpisController extends Controller
     {
         // Lista de Vendas
         $listSaleModel = app(Sale::class);
-        $listSale = $listSaleModel->get();
 
-        $mes = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maior', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro','Dezembro'];
 
-        return response()->json($listSale);
+        $listMes = [];
+        $getListOkaySale = [];
+        $getListCalledSale = [];
+        $getListReturnedSale = [];
+
+        $mes = array("Janeiro" => '01', "Fevereiro" => '02', "Março" => '03', "Abril" => '04', "Maior" => '05', "Junho" => '06', "Julho" => '07', "Agosto" => '08', "Setembro" => '09', "Outubro" => '10', "Novembro" => '11',"Dezembro" => '12');
+
+        foreach ($mes as $value) {
+            $listMes[] = $value;
+        }
+        
+        $dateIni = '2022-01-01';
+        $dateFin = '2022-12-28';
+
+
+        // resultado de vendas
+        $getOkaySale = $listSaleModel->where('status_sales','Okay')->where([
+            ['dateSale', '>=', $dateIni],
+            ['dateSale', '<=', $dateFin],
+        ])->where('status',1)->get();
+        
+
+        $getCalledSale = $listSaleModel->where('status_sales','Called')->where([
+            ['dateSale', '>=', $dateIni],
+            ['dateSale', '<=', $dateFin],
+        ])->where('status',1)->get();
+      
+
+        $getReturnedSale = $listSaleModel->where('status_sales','returned')->where([
+            ['dateSale', '>=', $dateIni],
+            ['dateSale', '<=', $dateFin],
+        ])->where('status',1)->get();
+
+        
+        // Pegar a quantidade os resultado de vendas
+
+        // Okay Sale
+        $getQtdOkayCount = $getOkaySale->count();
+
+        // Adicionar as vendas (vendidos) de cada mês
+
+        // Called Sale
+        $getQtdCalledCount = $getCalledSale->count();
+
+          // Adicionar as vendas (cancelados) de cada mês
+
+        // Returned Sale
+        $getQtdReturnedCount = $getReturnedSale->count();
+
+        // Adicionar as vendas (devolvidos) de cada mês
+
+        return response()->json($listMes);
     }
 }

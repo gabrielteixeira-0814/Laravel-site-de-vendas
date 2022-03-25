@@ -82,7 +82,7 @@ $(document).ready(function(){
                         datasets: [
                             {
                             label: 'Vendidos',
-                            data: [10],
+                            data: [10,5,7],
                             backgroundColor: [
                                 '#9AFF9A'
                             ],
@@ -93,7 +93,7 @@ $(document).ready(function(){
                         },
                         {
                             label: 'Cancelados',
-                            data: [5],
+                            data: [5,5,7],
                             backgroundColor: [
                                 '#CD0000',
                             ],
@@ -104,7 +104,7 @@ $(document).ready(function(){
                         },
                         {
                             label: 'Devoluções',
-                            data: [3],
+                            data: [5,2,9],
                             backgroundColor: [
                                 '#FFA54F',
                             ],
