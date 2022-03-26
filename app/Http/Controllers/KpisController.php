@@ -162,7 +162,6 @@ class KpisController extends Controller
             $dateIni = "2022-$value-01";
             $dateFin = "2022-$value-28";
 
-
             // resultado de vendas
 
             /*** Vendidos ***/ 
@@ -211,15 +210,6 @@ class KpisController extends Controller
             /*** Devolvidos fim ***/
         }
         
-        
-        
-
-        
-      
-
-       
-
-
         $monthSales = array(
             "monthSalesDescription" => $listmonth,
             "monthSalesNumber" => $listmonthNumber,  

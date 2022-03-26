@@ -76,13 +76,13 @@ $(document).ready(function(){
                     type: 'bar',
                     data: {
                         
-                        labels: ['Janeiro', 'Fevereiro', 'Março'],
+                        labels: data["monthSalesDescription"],
 
 
                         datasets: [
                             {
                             label: 'Vendidos',
-                            data: [10,5,7],
+                            data: data["getListOkaySaleValue"],
                             backgroundColor: [
                                 '#9AFF9A'
                             ],
@@ -93,7 +93,7 @@ $(document).ready(function(){
                         },
                         {
                             label: 'Cancelados',
-                            data: [5,5,7],
+                            data: data["getListCalledSaleValue"],
                             backgroundColor: [
                                 '#CD0000',
                             ],
@@ -104,7 +104,7 @@ $(document).ready(function(){
                         },
                         {
                             label: 'Devoluções',
-                            data: [5,2,9],
+                            data: data["getListReturnedSaleValue"],
                             backgroundColor: [
                                 '#FFA54F',
                             ],
