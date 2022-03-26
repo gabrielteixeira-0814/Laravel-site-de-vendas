@@ -143,57 +143,91 @@ class KpisController extends Controller
         $listSaleModel = app(Sale::class);
 
 
-        $listMes = [];
+        $listmonth = [];
+        $listmonthNumber = [];
+
+
         $getListOkaySale = [];
         $getListCalledSale = [];
         $getListReturnedSale = [];
 
-        $mes = array("Janeiro" => '01', "Fevereiro" => '02', "Março" => '03', "Abril" => '04', "Maior" => '05', "Junho" => '06', "Julho" => '07', "Agosto" => '08', "Setembro" => '09', "Outubro" => '10', "Novembro" => '11',"Dezembro" => '12');
+        $month = array("Janeiro" => "01", "Fevereiro" => "02", "Março" => "03", "Abril" => "04", "Maior" => "05", "Junho" => "06", "Julho" => "07", "Agosto" => "08", "Setembro" => "09", "Outubro" => "10", "Novembro" => "11","Dezembro" => "12");
 
-        foreach ($mes as $value) {
-            $listMes[] = $value;
+        // Usando array para buscar os dados dos resultados de vendas
+        foreach ($month as $key => $value) {
+
+            // Passando os monthes description
+            $listmonth[] =  $key;
+
+            $dateIni = "2022-$value-01";
+            $dateFin = "2022-$value-28";
+
+
+            // resultado de vendas
+
+            /*** Vendidos ***/ 
+
+            $getOkaySale = $listSaleModel->where('status_sales','Okay')->where([
+                ['dateSale', '>=', $dateIni],
+                ['dateSale', '<=', $dateFin],
+            ])->where('status',1)->get();
+
+            // Okay Sale
+            $getQtdOkayCount = $getOkaySale->count();
+            
+            // Adicionar as vendas (vendidos) de cada mês
+            $getListOkaySale[] = $getQtdOkayCount;
+
+            /*** Vendidos fim ***/ 
+
+            /*** Cancelados ***/ 
+
+            $getCalledSale = $listSaleModel->where('status_sales','Called')->where([
+                ['dateSale', '>=', $dateIni],
+                ['dateSale', '<=', $dateFin],
+            ])->where('status',1)->get();
+
+            // Called Sale
+            $getQtdCalledCount = $getCalledSale->count();
+
+             // Adicionar as vendas (canceladas) de cada mês
+            $getListCalledSale[] = $getQtdCalledCount;
+
+            /*** Cancelados fim ***/ 
+
+            /*** Devolvidos ***/
+
+            $getReturnedSale = $listSaleModel->where('status_sales','returned')->where([
+                ['dateSale', '>=', $dateIni],
+                ['dateSale', '<=', $dateFin],
+            ])->where('status',1)->get();
+    
+            // Returned Sale
+            $getQtdReturnedCount = $getReturnedSale->count();
+    
+            // Adicionar as vendas (devolvidos) de cada mês
+            $getListReturnedSale[] = $getQtdReturnedCount;
+
+            /*** Devolvidos fim ***/
         }
         
-        $dateIni = '2022-01-01';
-        $dateFin = '2022-12-28';
-
-
-        // resultado de vendas
-        $getOkaySale = $listSaleModel->where('status_sales','Okay')->where([
-            ['dateSale', '>=', $dateIni],
-            ['dateSale', '<=', $dateFin],
-        ])->where('status',1)->get();
+        
         
 
-        $getCalledSale = $listSaleModel->where('status_sales','Called')->where([
-            ['dateSale', '>=', $dateIni],
-            ['dateSale', '<=', $dateFin],
-        ])->where('status',1)->get();
+        
       
 
-        $getReturnedSale = $listSaleModel->where('status_sales','returned')->where([
-            ['dateSale', '>=', $dateIni],
-            ['dateSale', '<=', $dateFin],
-        ])->where('status',1)->get();
+       
 
-        
-        // Pegar a quantidade os resultado de vendas
 
-        // Okay Sale
-        $getQtdOkayCount = $getOkaySale->count();
+        $monthSales = array(
+            "monthSalesDescription" => $listmonth,
+            "monthSalesNumber" => $listmonthNumber,  
+            "getListOkaySaleValue" => $getListOkaySale,
+            "getListCalledSaleValue" => $getListCalledSale,
+            "getListReturnedSaleValue" => $getListReturnedSale,
+            );
 
-        // Adicionar as vendas (vendidos) de cada mês
-
-        // Called Sale
-        $getQtdCalledCount = $getCalledSale->count();
-
-          // Adicionar as vendas (cancelados) de cada mês
-
-        // Returned Sale
-        $getQtdReturnedCount = $getReturnedSale->count();
-
-        // Adicionar as vendas (devolvidos) de cada mês
-
-        return response()->json($listMes);
+        return response()->json($monthSales);
     }
 }
