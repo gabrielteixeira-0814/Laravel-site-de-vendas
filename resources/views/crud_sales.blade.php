@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('content')
-    <h1> {{ $page == "edit" ? "Editar Venda" : "Adicionar" }}</h1>
+    <h1> {{ $page == "edit" ? "Editar Venda" : "Adicionar Venda" }}</h1>
     <div class='card'>
         <div class='card-body'>
 
@@ -135,9 +135,7 @@
             }
         });
     });
-// $(document).ready(function(){
-    
-// });
+
 </script>
 
 @endsection
