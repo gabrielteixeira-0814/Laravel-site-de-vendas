@@ -68,12 +68,10 @@
     
     <script src="{{ url('/js/app.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
-    
-    @yield('script')
-    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://kit.fontawesome.com/d712964458.js" crossorigin="anonymous"></script>
 
+    @yield('script')
     
 </body>
 </html>
