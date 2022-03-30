@@ -18,7 +18,16 @@
                 <canvas id="ChartBarProduct" width="200" height="100"></canvas>
             </div>
             <div class='col-md-12 p-2 mt-5 border rounded'>
-                <h3>Resultado de vendas anual 2022</h3>
+               <div>
+                   <h3 class="d-inline">Resultado de vendas anual 2022</h3>
+                   
+                   <select style="width: 100px" class="d-inline form-control float-right">
+                        <option>2019</option>
+                        <option>2020</option>
+                        <option>2021</option>
+                        <option>2022</option>
+                    </select>
+                </div>
                 <canvas id="ChartBarSaleMensais" width="200" height="100"></canvas>
             </div>
         </div>
@@ -28,7 +37,6 @@
 @section('script')
 
 {{-- Pegando os graficos --}}
-
 <script src="{{ asset('js/kpis.js') }}"></script>
 
 @endsection
