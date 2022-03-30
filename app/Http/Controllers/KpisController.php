@@ -139,13 +139,13 @@ class KpisController extends Controller
 
     public function getDataKpisResultSales()
     {
+        $anoKpis = $_GET['anoKpis'];
+
         // Lista de Vendas
         $listSaleModel = app(Sale::class);
 
-
         $listmonth = [];
         $listmonthNumber = [];
-
 
         $getListOkaySale = [];
         $getListCalledSale = [];
@@ -159,8 +159,8 @@ class KpisController extends Controller
             // Passando os monthes description
             $listmonth[] =  $key;
 
-            $dateIni = "2022-$value-01";
-            $dateFin = "2022-$value-28";
+            $dateIni = "$anoKpis-$value-01";
+            $dateFin = "$anoKpis-$value-28";
 
             // resultado de vendas
 

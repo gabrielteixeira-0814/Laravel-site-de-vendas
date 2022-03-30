@@ -21,14 +21,15 @@
                <div>
                    <h3 class="d-inline">Resultado de vendas anual 2022</h3>
                    
-                   <select style="width: 100px" class="d-inline form-control float-right">
-                        <option>2019</option>
-                        <option>2020</option>
-                        <option>2021</option>
-                        <option>2022</option>
+                   <select style="width: 100px" id="anoKpis" class="d-inline form-control float-right anoKpis">
+                        <option value="2019" selected="selected">2019</option>
+                        <option value="2020">2020</option>
+                        <option value="2021">2021</option>
+                        <option value="2022" >2022</option>
                     </select>
                 </div>
                 <canvas id="ChartBarSaleMensais" width="200" height="100"></canvas>
+                <div id="chartDiv"></div>
             </div>
         </div>
     </div>

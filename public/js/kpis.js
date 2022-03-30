@@ -189,84 +189,93 @@ $(document).ready(function(){
 });
 
 /*** Gráfico de barra das verndas e cancelados e devoluções dos meses do ano ***/
+
 $(document).ready(function(){
-    $.ajax({
-        type: "GET",
-        url: "/getDataKpisResultSales",
-        'data': {},
-        datatype: "json",
-        success: function(data) {
-            if(data) {
-                console.log(data);
-                // Gráfico de barra de produtos mais ventidos
-                const ctx = document.getElementById('ChartBarSaleMensais').getContext('2d');
-                const myChart = new Chart(ctx, {
-                    type: 'bar',
-                    data: {
-                        
-                        labels: data["monthSalesDescription"],
 
+    $(".anoKpis").change(function(){
 
-                        datasets: [
+        var anoKpis = $( "#anoKpis" ).val();
+
+        console.log(anoKpis);
+
+        $('#ChartBarSaleMensais').remove();
+        $('#chartDiv').append('<canvas id="ChartBarSaleMensais"></canvas>');
+        
+        $.ajax({
+            type: "GET",
+            url: "/getDataKpisResultSales",
+            'data': {anoKpis: anoKpis},
+            datatype: "json",
+            success: function(data) {
+                if(data) {
+                    console.log(data);
+                    // Gráfico de barra de produtos mais ventidos
+                    const ctx = document.getElementById('ChartBarSaleMensais').getContext('2d');
+                    const myChart = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: data["monthSalesDescription"],
+                            datasets: [
+                                {
+                                label: 'Vendidos',
+                                data: data["getListOkaySaleValue"],
+                                backgroundColor: [
+                                    '#9AFF9A'
+                                ],
+                                borderColor: [
+                                    '#9AFF9A'
+                                ],
+                                borderWidth: 1
+                            },
                             {
-                            label: 'Vendidos',
-                            data: data["getListOkaySaleValue"],
-                            backgroundColor: [
-                                '#9AFF9A'
-                            ],
-                            borderColor: [
-                                '#9AFF9A'
-                            ],
-                            borderWidth: 1
-                        },
-                        {
-                            label: 'Cancelados',
-                            data: data["getListCalledSaleValue"],
-                            backgroundColor: [
-                                '#CD0000',
-                            ],
-                            borderColor: [
-                                '#CD0000'
-                            ],
-                            borderWidth: 1
-                        },
-                        {
-                            label: 'Devoluções',
-                            data: data["getListReturnedSaleValue"],
-                            backgroundColor: [
-                                '#FFA54F',
-                            ],
-                            borderColor: [
-                                '#FFA54F'
-                            ],
-                            borderWidth: 1
-                        },
-                    ]
-                    },
-                    options: {
-                        indexAxis: 'y',
-                        scales: {
-                            y: {
-                                beginAtZero: true
+                                label: 'Cancelados',
+                                data: data["getListCalledSaleValue"],
+                                backgroundColor: [
+                                    '#CD0000',
+                                ],
+                                borderColor: [
+                                    '#CD0000'
+                                ],
+                                borderWidth: 1
                             },
-                            x: {
-                                grid: {
-                                offset: true
+                            {
+                                label: 'Devoluções',
+                                data: data["getListReturnedSaleValue"],
+                                backgroundColor: [
+                                    '#FFA54F',
+                                ],
+                                borderColor: [
+                                    '#FFA54F'
+                                ],
+                                borderWidth: 1
+                            },
+                        ]
+                        },
+                        options: {
+                            indexAxis: 'y',
+                            scales: {
+                                y: {
+                                    beginAtZero: true
+                                },
+                                x: {
+                                    grid: {
+                                    offset: true
+                                    }
                                 }
-                            }
-                        },
-                        elements: {
-                            bar: {
-                                borderWidth: 2,
-                            }
                             },
-                            responsive: true,
-                    }
-                });
+                            elements: {
+                                bar: {
+                                    borderWidth: 2,
+                                }
+                                },
+                                responsive: true,
+                        }
+                    });
+                }
+            },
+            error: function (data) {
+                console.log(data);
             }
-        },
-        error: function (data) {
-            console.log(data);
-            }
+        });
     });
 });
