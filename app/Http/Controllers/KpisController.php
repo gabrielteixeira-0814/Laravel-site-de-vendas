@@ -145,7 +145,7 @@ class KpisController extends Controller
         }else {
             $anoKpis = $_GET['anoKpis'];
         }   
-       
+
         // Lista de Vendas
         $listSaleModel = app(Sale::class);
 
@@ -164,8 +164,8 @@ class KpisController extends Controller
             // Passando os monthes description
             $listmonth[] =  $key;
 
-            $dateIni = "$anoKpis-$value-01";
-            $dateFin = "$anoKpis-$value-28";
+            $dateIni = date("$anoKpis-$value-01");
+            $dateFin = date("$anoKpis-$value-t");
 
             // resultado de vendas
 
