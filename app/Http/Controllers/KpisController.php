@@ -139,8 +139,13 @@ class KpisController extends Controller
 
     public function getDataKpisResultSales()
     {
-        $anoKpis = $_GET['anoKpis'];
 
+        if($_GET['anoKpis'] == 'false') {
+            $anoKpis = $Object = date('Y');
+        }else {
+            $anoKpis = $_GET['anoKpis'];
+        }   
+       
         // Lista de Vendas
         $listSaleModel = app(Sale::class);
 
