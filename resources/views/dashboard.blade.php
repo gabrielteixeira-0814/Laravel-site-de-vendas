@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.layout')
 
 @section('content')
     @if (\Session::has('success'))
@@ -9,8 +9,6 @@
     </div>
     @endif
     <h1>Dashboard de vendas</h1>
-    
-    {{ $withFilter }}
     <div class='card mt-3'>
         <div class='card-body'>
             <h5 class="card-title mb-5">Tabela de vendas

@@ -2,8 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 
+Auth::routes();
+
+Route::get('/', 'HomeController@index')->name('home');
+
 Route::resources([
-    '/' => 'DashboardController',
+    '/home' => 'DashboardController',
     '/user' => 'UserController',
     '/product' => 'ProductController',
     '/sale' => 'SaleController',
@@ -25,6 +29,5 @@ Route::get('getDataKpis', 'KpisController@getDataKpis')->name('kpis.getDataKpis'
 
 // Gráfico de barra resultados de vendas
 Route::get('getDataKpisResultSales', 'KpisController@getDataKpisResultSales')->name('kpis.getDataKpisResultSales');
-
 
 

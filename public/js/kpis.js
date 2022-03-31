@@ -76,7 +76,7 @@ $(document).ready(function(){
                 // Gráfico de barra de produtos mais ventidos
                 const ctx = document.getElementById('ChartBarPieSaleOkeyReturned').getContext('2d');
                 const myChart = new Chart(ctx, {
-                    type: 'pie',
+                    type: 'doughnut',
                     data: {
                         
                         labels: data["productNameKpi"],

@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.layout')
 
 @section('content')
     <h1> {{ $page == "edit" ? "Editar Venda" : "Adicionar Venda" }}</h1>
