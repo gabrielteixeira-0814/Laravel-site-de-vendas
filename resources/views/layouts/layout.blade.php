@@ -10,7 +10,6 @@
 
      <!-- Styles -->
      <link rel='stylesheet' href="{{ url('/css/app.css') }}">
-     <link href="{{ asset('css/styledDashboard.css') }}" rel="stylesheet">
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
@@ -18,6 +17,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" rel="stylesheet">
 
+    <link href="{{ asset('css/styledDashboard.css') }}" rel="stylesheet">
+    
     <style>
         .wrapper #wrapperContent, .wrapper #wrapperContent.closed {
             padding: 0;
@@ -28,7 +29,7 @@
     <div id="appDashboard">
         <header class="header" id="header">
             <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
-            <a href="{{ route('dashboard.index')}}" class="text-decoration-none text-dark">
+            <a href="{{route('user.edit',Auth::user()->id)}}" class="text-decoration-none text-dark">
                 <div class=""> {{ Auth::user()->name }} <i class='bx bx-user nav_icon'></i> </div>
             </a>
         </header>

@@ -4,7 +4,6 @@
     <h1>{{ $page == 'create' ? 'Adicionar' : 'Editar'}} Produto</h1>
     <div class='card'>
         <div class='card-body'>
-            
             @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul>

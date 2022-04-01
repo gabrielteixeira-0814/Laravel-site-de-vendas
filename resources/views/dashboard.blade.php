@@ -44,28 +44,15 @@
                             <input type="date" class="form-control" id="" name="dateFin" placeholder="Username">
                         </div>
                     </div>
-                   
-                       
-                        <div class="mx-2">
-                            <button type="submit" class="btn btn-primary" style='padding: 14.5px 16px;'>
-                                <i class='fa fa-search'></i></button>
-                        </div>
-                        <div class="my-1">
-                            <button type="submit" class="btn btn-warning text-light" style='padding: 10px 16px;'>Limpar</button>
-                        </div>
+                    <div class="mx-2">
+                        <button type="submit" class="btn btn-primary" style='padding: 14.5px 16px;'>
+                            <i class='fa fa-search'></i></button>
+                    </div>
+                    <div class="my-1">
+                        <button type="submit" class="btn btn-warning text-light" style='padding: 10px 16px;'>Limpar</button>
+                    </div>
                 </div>
             </form>
-
-            <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                  Dropdown button
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
-                  <li><a class="dropdown-item" href="#">Something else here</a></li>
-                </ul>
-              </div>
             <table class='table'>
                 <tr>
                     <th scope="col">

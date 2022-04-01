@@ -27,7 +27,10 @@ class UserController extends Controller
     public function create()
     {
         $page = 'create';
-        return view('crud_users', compact('page'));
+        $user = '';
+        $route = 'user.create';
+        $method = 'POST';
+        return view('crud_users', compact('page', 'user', 'route', 'method'));
     }
 
     /**
@@ -82,7 +85,15 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $id = $id;
+        $page = "edit";
+        $route = 'user.update';
+        $method = 'PUT';
+
+        $findUserModel = app(User::class);
+        $user = $findUserModel->find($id);
+
+        return view('crud_users', compact('id','page', 'route', 'method', 'user'));
     }
 
     /**
@@ -94,7 +105,32 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $mensagens = [
+            'required' => 'O :attribute é obrigatório!',
+            'name.min' => 'É necessário no mínimo 5 caracteres no nome!',
+            'name.max' => 'É necessário no Máximo 255 caracteres no nome!',
+            'email.email' => 'Digite um email válido!',
+            'password.required' => 'A senha é obrigatório!'
+        ];
+
+        $validatedData = $request->validate([
+            'name' => 'required|string|min:5|max:255',
+            'cpf' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255',
+            'password' => 'sometimes|required|string|min:6|confirmed', // sometimes deixar valida so quando o registro password existir
+        ], $mensagens);
+
+        $validatedData['password'] = Hash::make($validatedData['password']);
+
+        $user = User::where('id', $id)->first();
+        
+        if($user) {
+            $user->update($validatedData);
+            return back()->with('success', 'Usuário editado com sucesso.');
+        }else {
+            return back()->with('error', 'Usuário não foi editado!');
+        }
     }
 
     /**
