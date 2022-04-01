@@ -9,11 +9,11 @@ use App\Sale;
 
 class DashboardController extends Controller
 {
-
-    // public function __construct()
-    // {
-    //     $this->middleware('auth');
-    // }
+    // Impede que o usuario que não esta autenticado acesse o controle
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     
     /**
      * Display a listing of the resource.

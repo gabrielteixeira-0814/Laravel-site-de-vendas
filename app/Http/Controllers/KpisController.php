@@ -11,6 +11,11 @@ use App\Sale;
 
 class KpisController extends Controller
 {
+    // Impede que o usuario que não esta autenticado acesse o controle
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
