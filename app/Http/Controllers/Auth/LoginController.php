@@ -38,7 +38,7 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    // Colocar outro tipo de validação
+    // Colocar outro tipo de validação para o login
     public function username()
     {
         return 'email';
