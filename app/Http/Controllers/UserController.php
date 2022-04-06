@@ -34,7 +34,7 @@ class UserController extends Controller
     {
         $page = 'create';
         $user = '';
-        $route = 'user.create';
+        $route = 'user.store';
         $method = 'POST';
         return view('crud_users', compact('page', 'user', 'route', 'method'));
     }
