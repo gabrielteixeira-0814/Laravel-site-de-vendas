@@ -14,7 +14,7 @@
                         @csrf
 
                         <div class="form-group row">
-                            <label for="email" class="col-md-12">{{ __('E-mail') }}</label>
+                            <label for="email" class="col-md-12">E-mail</label>
 
                             <div class="col-md-12">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
@@ -28,7 +28,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="password" class="col-md-12">{{ __('Senha') }}</label>
+                            <label for="password" class="col-md-12">Senha</label>
 
                             <div class="col-md-12">
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
@@ -44,14 +44,14 @@
                             <div class="col-md-12">
                                 <div class="d-grid gap-2">
                                     <button type="submit" class="btn btn-primary">
-                                        {{ __('Login') }}
+                                        Entrar
                                     </button>
                                 </div>
                             </div>
                             <div class="col-md-12 text-center mt-2">
                                 @if (Route::has('password.request'))
                                     <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
+                                        Esqueceu sua senha?
                                     </a>
                                 @endif
                             </div>

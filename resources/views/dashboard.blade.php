@@ -8,6 +8,7 @@
         </ul>
     </div>
     @endif
+<div class="pt-4 pb-1">
     <h1>Dashboard de vendas</h1>
     <div class='card mt-3'>
         <div class='card-body'>
@@ -161,7 +162,7 @@
         </div>
     </div>
 
-    <div class='card mt-3'>
+    <div class='card mt-3 mb-5'>
         <div class='card-body'>
             <h5 class="card-title mb-5">Produtos
                 <a href="{{ route('product.create') }}" class='btn btn-secondary float-right btn-sm rounded'><i class='fa fa-plus'></i></a></h5>
@@ -197,4 +198,5 @@
 
         </div>
     </div>
+</div>
 @endsection

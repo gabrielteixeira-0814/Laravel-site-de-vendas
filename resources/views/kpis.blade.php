@@ -1,9 +1,9 @@
 @extends('layouts.layout')
 
 @section('content')
-    <h1>Kpi de vendas</h1>
-    <div class='col-12'>
-        <div class='row'>
+    <div class='col-12 px-2 py-4'>
+        <h1>Kpi de vendas</h1>
+        <div class='row bg-white p-3 rounded'>
             <div class='col-md-6 p-2 mb-5'>
                 <div class='col-md-12 p-2 border rounded'>
                     <canvas id="ChartBarPieSaleOkeyCalled"></canvas>
