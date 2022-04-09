@@ -2,12 +2,20 @@
 
 use Illuminate\Support\Facades\Route;
 
+// Route::resources([
+//     '/' => 'HomeStoreController',
+//     '/dashboard' => 'DashboardController',
+//     '/user' => 'UserController',
+//     '/product' => 'ProductController',
+//     '/sale' => 'SaleController',
+//     '/kpis' => 'KpisController',
+// ]);
+
 Auth::routes();
 
-Route::get('/aa', 'HomeController@index');
-
 Route::resources([
-    '/' => 'DashboardController',
+    '/' => 'HomeStoreController',
+    '/dashboard' => 'DashboardController',
     '/user' => 'UserController',
     '/product' => 'ProductController',
     '/sale' => 'SaleController',

@@ -36,11 +36,11 @@
         <div class="l-navbar" id="nav-bar">
             <nav class="nav">
                 <div> 
-                    <a href="{{ route('index')}}" class="nav_logo"><i class='bx bx-layer nav_logo-icon'></i>
+                    <a href="{{ route('dashboard.index')}}" class="nav_logo"><i class='bx bx-layer nav_logo-icon'></i>
                         <span class="nav_logo-name">Site de Vendas</span>
                     </a>
                     <div class="nav_list">
-                        <a href="{{ route('index')}}" class="nav_link active"> <i class='bx bx-grid-alt nav_icon'></i>
+                        <a href="{{ route('dashboard.index')}}" class="nav_link active"> <i class='bx bx-grid-alt nav_icon'></i>
                             <span class="nav_name">Dashboard</span> 
                         </a>
 

@@ -14,10 +14,8 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
                     <form method="POST" action="{{ route('password.email') }}">
                         @csrf
-
                         <div class="form-group row">
                             <label for="email" class="col-md-12">{{ __('E-mail') }}</label>
                             <div class="col-md-12">
@@ -30,7 +28,6 @@
                                 @enderror
                             </div>
                         </div>
-
                         <div class="form-group row mb-0">
                             <div class="col-md-12">
                                 <div class="d-grid gap-2">
