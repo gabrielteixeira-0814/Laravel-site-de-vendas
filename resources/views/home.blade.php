@@ -57,7 +57,26 @@
     </div>
   </div>
 </div>
-<div class="container mt-5 border-top">ola</div>
+<div class="container mt-5 border-top">
+  <div class="row mt-3">
+    <div class="col-12 col-md-3">
+      <div class="border rounded p-2">
+        <div class="" style="300px">
+          <img src="{{ asset('img/2.png') }}" class="img-fluid"  />
+        </div>
+        <div>ola</div>
+        <div>ola</div>
+      </div>
+    </div>
+    <div class="col-12 col-md-3">
+      <div class="border rounded p-2">
+        <div>ola</div>
+        <div>ola</div>
+        <div>ola</div>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 
