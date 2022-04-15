@@ -1,7 +1,7 @@
 @extends('layouts.app')
-
+{{ $count = 12 }}
 @section('content')
-<nav class="navbar navbar-expand-md navbar-dark bg-danger">
+<nav class="navbar navbar-expand-md navbar-dark bg-danger fixed-top mb-5">
   <div class="container">
     <a class="navbar-brand" href="#">Loja Online</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -27,7 +27,7 @@
     </div>
   </div>
 </nav>
-<div class="container">
+<div class="container mt-5 px-0">
   <div>
     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-indicators">
@@ -57,27 +57,50 @@
     </div>
   </div>
 </div>
-<div class="container mt-5 border-top">
-  <div class="row mt-3">
-    <div class="col-12 col-md-3">
-      <div class="border rounded p-2">
-        <div class="" style="300px">
-          <img src="{{ asset('img/2.png') }}" class="img-fluid"  />
+<div class="container my-5 px-0 border-top">
+  <div class="row justify-content-center mt-3">
+    @for ($i = 0; $i < $count; $i++)
+      <div class="col-12 col-md-2 my-3">
+        <div class="border rounded border">
+          <div class="text-end px-1 py-2" style="300px">
+            <i class="fa-regular fa-heart" style="font-size: 20px"></i>
+            {{-- <i class="fa-solid fa-heart" style="color:red"></i> --}}
+          </div>
+          <div class="px-4 pb-4" style="300px">
+            <img src="{{ asset('img/2.png') }}" class="img-fluid"  />
+          </div>
+          <div class="text-center text-dark p-1 border border-2 fw-bold" style="background-color: #DCDCDC">
+            R$ 10,50
+          </div>
+          <div class="py-3" style="background-color: #f5f4f4">
+            <h5 class="text-center">Livro Robô</h5>
+            <p class="text-center mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
+          </div>
+          <div class="text-center border-top border-bottom p-3" style="background-color: #DCDCDC">
+            <button type="button" class="btn btn-danger">Adicionar ao carrinho</button>
+          </div>
         </div>
-        <div>ola</div>
-        <div>ola</div>
       </div>
-    </div>
-    <div class="col-12 col-md-3">
-      <div class="border rounded p-2">
-        <div>ola</div>
-        <div>ola</div>
-        <div>ola</div>
-      </div>
-    </div>
+    @endfor
   </div>
 </div>
 
-
+<footer class="fixed-bottom mt-5">
+  <div style="background-color: #f5f4f4">
+    <div class="container p-3">
+      <div class="row text-center">
+        <div class="col-12 col-md-4">
+          &copy; {{date("Y")}} Site de Vendas
+        </div>
+        <div class="col-12 col-md-4">
+          Política de Privacidade
+        </div>
+        <div class="col-12 col-md-4">
+          Administrar
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
 
 @endsection
