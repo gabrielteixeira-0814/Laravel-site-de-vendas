@@ -36,14 +36,20 @@
     @for ($i = 0; $i < $count; $i++)
       <div class="col-12 col-md-2 my-3">
         <div class="border rounded border">
-          <div class="text-end px-1 py-2" style="300px;">a
-            <i class="fa-regular fa-heart favorite" id="favorite" value="1" style="font-size: 20px; cursor: pointer;"></i>
+          <div class="text-end px-1 py-2" style="300px;">
+
+            <i class="fa-regular fa-heart" id="favorite" style="font-size: 20px; cursor: pointer;"></i>
+            <input hidden class="favorite" value="1"/>
+
+            <i class="fa-solid fa-heart" id="favoriteActive" style="color:red; font-size: 20px; cursor: pointer;"></i>
+            <input hidden class="favoriteActive" value="0"/>
+
           </div>
           <div class="px-4 pb-4" style="300px">
-            <img src="{{ asset('img/2.png') }}" class="img-fluid"  />
+            <img src="{{ asset('img/2.png') }}" class="img-fluid" />
           </div>
           <div class="text-center text-dark p-1 border border-2 fw-bold" style="background-color: #DCDCDC">
-            R$ 10,50
+            R$ 10,501
           </div>
           <div class="py-3" style="background-color: #f5f4f4">
             <h5 class="text-center">Livro Robô</h5>

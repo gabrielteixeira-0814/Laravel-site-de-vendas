@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
 use App\Product;
+use App\Sale;
 
 class HomeStoreController extends Controller
 {
@@ -82,5 +84,19 @@ class HomeStoreController extends Controller
     public function destroy($id)
     {
         
+    }
+
+    public function getDataProduct()
+    {
+        // Lista de Produtos
+        $listProductModel = app(Product::class);
+        $listProduct = $listProductModel->all();
+
+        $kpiSale = array(
+            "productNameKpi" => "ola",
+            "quantityProductKpi" => "ola2222"
+            );
+
+        return response()->json($listProduct);
     }
 }

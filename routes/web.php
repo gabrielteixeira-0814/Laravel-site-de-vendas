@@ -29,9 +29,12 @@ Route::get('deleteEditsale/{id}', 'SaleController@deleteEditsale')->name('sale.d
 Route::get('getDataUser', 'SaleController@getDataUser')->name('sale.getDataUser');
 Route::get('getSeachSale', 'DashboardController@getSeachSale')->name('dashboard.getSeachSale');
 
+// Lista de produtos para pagina inicial "Home" ajax Jquery
+Route::get('getDataProduct', 'HomeStoreController@getDataProduct')->name('home.getDataProduct');
+
 // Rota para trazer dados para os Kpis com ajax Jquery
 // Quando for usar dentro de um arquivo blade usar o apelido (kpis.getDataKpis)
-// Quando for usar a rota detro do arquivo js usar (getDataKpis)
+// Quando for usar a rota dentro do arquivo js usar (getDataKpis)
 Route::get('getDataKpis', 'KpisController@getDataKpis')->name('kpis.getDataKpis');
 
 // Gráfico de barra resultados de vendas

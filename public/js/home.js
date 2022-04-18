@@ -2,44 +2,52 @@
 /*** Gráfico de pizza das vendas por porcentagem de vendidos e cancelados ***/
 $(document).ready(function(){
 
-     $(".favorite").click(function(){
+    // $("#favoriteActive").hide();
+    // $("#favorite").show();
 
-        var favorite = $("#favorite").val();
+    // $("#favorite").click(function(){
+        
+    //     var favorite = $(".favorite").val();
 
-        var valorDaDiv = $(".favorite").text();    
-        $("#favorite").val(valorDaDiv);
+    //     alert(favorite);
 
-        alert(valorDaDiv);
+    //     if(favorite == 1){
+    //         $("#favoriteActive").show();
+    //         $(".favoriteActive").show();
 
-        // $(".favorite").before('<i class="fa-solid fa-heart favoriteActive" style="color:red"></i>');
-        //$( ".favorite" ).remove();
-
-
-    //     var cpf = $(".cpf").val();
-    //     // alert(cpf);
-    //     $.ajax({
-    //     type: "GET",
-    //     url: "{{ route('sale.getDataUser') }}",
-    //     'data': {cpf: cpf},
-    //     datatype: "json",
-    //     success: function(data) {
-
-    //     if(data) {
-    //         $(".id").val(data.id);
-    //         $(".name").val(data.name);
-    //         $(".email").val(data.email);
-    //         console.log(data.name);
-    //         $(".resp").hide();
+    //         $("#favorite").hide();
+    //         $(".favorite").hide();
     //     }
-    // },
-    //     error: function (data) {
-    //         $(".resp").show();
-    //         $(".resp").html("Não há nenhum registro com esse CPF, verifique se está correto!");
-    //         $(".resp").css({"background-color": "#f8d7da","color": "#721c24", "text-align" : "center", "font-size": "17px", "border-radius": "5px", "border-color" : "#f5c6c"});
-    //         // console.log("error na parada");
+    // });
 
-    //         }
-    //     });
-    });
+    // $("#favoriteActive").click(function(){
+    //     var favorite = $(".favoriteActive").val();
+
+    //     alert(favorite);
+
+    //     if(favorite == 0){
+    //         $("#favoriteActive").hide();
+    //         $(".favoriteActive").hide();
+
+    //         $("#favorite").show();
+    //         $(".favorite").show();
+    //     }
+    // });
+
+    $.ajax({
+        type: "GET",
+        url: "/getDataProduct",
+        'data': {},
+        datatype: "json",
+        success: function(data) {
+
+        if(data) {
+            console.log(data);
+        }
+    },
+        error: function (data) {
+            console.log("error na parada");
+            }
+        });
 
 });
