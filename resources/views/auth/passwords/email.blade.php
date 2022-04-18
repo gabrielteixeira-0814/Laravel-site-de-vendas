@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.appPageLogin')
 
 @section('content')
 <div class="container h-100">
@@ -6,7 +6,7 @@
         <div class="col-md-4">
             <div class="card py-5">
                 <div class="mb-3">
-                    <h3 class="text-center">Enviar email</h3>
+                    <h1 class="text-center">Enviar email</h1>
                 </div>
                 <div class="card-body">
                     @if (session('status'))
@@ -16,8 +16,8 @@
                     @endif
                     <form method="POST" action="{{ route('password.email') }}">
                         @csrf
-                        <div class="form-group row">
-                            <label for="email" class="col-md-12">{{ __('E-mail') }}</label>
+                        <div class="form-group row mb-2">
+                            <label for="email" class="col-md-12 mb-2">{{ __('E-mail') }}</label>
                             <div class="col-md-12">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 

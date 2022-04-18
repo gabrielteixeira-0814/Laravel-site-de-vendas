@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html class="h-100"lang="{{ str_replace('_', '-', app()->getLocale()) }}">
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -14,8 +14,7 @@
     
     <link href="{{ asset('fontawesome/css/all.css') }}" rel="stylesheet">
   </head>
-  <body>
-    <main class="">
+  <body class="h-100">
       <nav class="navbar navbar-expand-md navbar-dark bg-danger fixed-top mb-5">
         <div class="container">
           <a class="navbar-brand" href="{{ route('index')}}">Loja Online</a>
@@ -57,7 +56,6 @@
           </div>
         </div>
       </footer>
-    </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
   </body>
 </html>
