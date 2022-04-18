@@ -9,9 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
     <title>Site de Vendas</title>
-
     <!-- Styles -->
-    
     <link href="{{ asset('fontawesome/css/all.css') }}" rel="stylesheet">
   </head>
   <body>
@@ -51,13 +49,20 @@
                 Política de Privacidade
               </div>
               <div class="col-12 col-md-4">
-                Administrar
+                <a class="text-decoration-none text-black" href="{{ route('index')}}">Administrar</a>
               </div>
             </div>
           </div>
         </div>
       </footer>
     </main>
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/d712964458.js" crossorigin="anonymous"></script>
+
+    @yield('script')
+  
   </body>
 </html>

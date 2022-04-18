@@ -36,9 +36,8 @@
     @for ($i = 0; $i < $count; $i++)
       <div class="col-12 col-md-2 my-3">
         <div class="border rounded border">
-          <div class="text-end px-1 py-2" style="300px">
-            <i class="fa-regular fa-heart" style="font-size: 20px"></i>
-            {{-- <i class="fa-solid fa-heart" style="color:red"></i> --}}
+          <div class="text-end px-1 py-2" style="300px;">a
+            <i class="fa-regular fa-heart favorite" id="favorite" value="1" style="font-size: 20px; cursor: pointer;"></i>
           </div>
           <div class="px-4 pb-4" style="300px">
             <img src="{{ asset('img/2.png') }}" class="img-fluid"  />
@@ -58,4 +57,11 @@
     @endfor
   </div>
 </div>
+@endsection
+
+@section('script')
+
+{{-- Animações dos produtos --}}
+<script src="{{ asset('js/home.js') }}"></script>
+
 @endsection

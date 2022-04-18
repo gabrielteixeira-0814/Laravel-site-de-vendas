@@ -110,7 +110,6 @@
 
         var cpf = $(".cpf").val();
         // alert(cpf);
-        
         $.ajax({
         type: "GET",
         url: "{{ route('sale.getDataUser') }}",

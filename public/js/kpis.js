@@ -1,6 +1,7 @@
 
 /*** Gráfico de pizza das vendas por porcentagem de vendidos e cancelados ***/
 $(document).ready(function(){
+    
     $.ajax({
         type: "GET",
         url: "/getDataKpis",
@@ -191,9 +192,6 @@ $(document).ready(function(){
 /*** Gráfico de barra das vendas e cancelados e devoluções dos meses do ano ***/
 
 $(document).ready(function(){
-
-    
-
     var anoKpis = 'false';
 
     $.ajax({
