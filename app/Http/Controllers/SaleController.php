@@ -225,6 +225,12 @@ class SaleController extends Controller
         //
     }
 
+    // Pagina de pagamento
+    public function paymentPage($id)
+    {
+        return ($id);
+    }
+
     public function getDataUser()
     {
         $cpf = $_GET['cpf'];

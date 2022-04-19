@@ -27,6 +27,9 @@ Route::get('deleteEditsale/{id}', 'SaleController@deleteEditsale')->name('sale.d
 
 // Criação de novas função no controlador usando rota com ajax Jquery
 Route::get('getDataUser', 'SaleController@getDataUser')->name('sale.getDataUser');
+Route::get('paymentPage/{id}', 'SaleController@paymentPage')->name('paymentPage');
+
+// Criação de novas função no controlador usando rota com ajax Jquery
 Route::get('getSeachSale', 'DashboardController@getSeachSale')->name('dashboard.getSeachSale');
 
 // Lista de produtos para pagina inicial "Home" ajax Jquery

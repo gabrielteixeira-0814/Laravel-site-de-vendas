@@ -49,7 +49,7 @@
                 Política de Privacidade
               </div>
               <div class="col-12 col-md-4">
-                <a class="text-decoration-none text-black" href="{{ route('index')}}">Administrar</a>
+                <a class="text-decoration-none text-black" href="{{ route('dashboard.index')}}">Administrar</a>
               </div>
             </div>
           </div>
