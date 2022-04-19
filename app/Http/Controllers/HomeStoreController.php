@@ -92,11 +92,6 @@ class HomeStoreController extends Controller
         $listProductModel = app(Product::class);
         $listProduct = $listProductModel->all();
 
-        $kpiSale = array(
-            "productNameKpi" => "ola",
-            "quantityProductKpi" => "ola2222"
-            );
-
         return response()->json($listProduct);
     }
 }
