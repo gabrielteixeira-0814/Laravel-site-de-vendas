@@ -228,8 +228,19 @@ class SaleController extends Controller
     // Pagina de pagamento
     public function paymentPage($id)
     {
-        return ($id);
+        return view("payment");
     }
+
+    public function testeList()
+    {
+
+        $listSaleModel = app(Sale::class);
+
+        $listSale = $listSaleModel::with(['product'])->where('status', 1)->orderBy('created_at', 'desc')->paginate(5);
+
+        return view("list", compact('listSale'));
+    }
+
 
     public function getDataUser()
     {

@@ -29,6 +29,7 @@ $(document).ready(function(){
            var id = $(this).val(); // pega o valor do proprio elemento
            console.log(id);
 
+           // Ir para a rota de destino
            window.location.href = "/paymentPage/"+id+"";
            
          });
