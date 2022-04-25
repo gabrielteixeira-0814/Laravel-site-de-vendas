@@ -238,7 +238,7 @@ class SaleController extends Controller
 
         $listSale = $listSaleModel::with(['product'])->where('status', 1)->orderBy('created_at', 'desc')->paginate(5);
 
-        return view("list", compact('listSale'));
+        return view("paginacao", compact('listSale'));
     }
 
 
