@@ -30,8 +30,6 @@ Route::get('getDataUser', 'SaleController@getDataUser')->name('sale.getDataUser'
 
 Route::get('paymentPage/{id}', 'SaleController@paymentPage')->name('paymentPage');
 
-Route::get('testeList', 'SaleController@testeList')->name('sale.testeList');
-
 // Criação de novas função no controlador usando rota com ajax Jquery
 Route::get('getSeachSale', 'DashboardController@getSeachSale')->name('dashboard.getSeachSale');
 

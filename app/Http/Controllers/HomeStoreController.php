@@ -14,7 +14,7 @@ class HomeStoreController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         return view('home');
     }
@@ -86,12 +86,25 @@ class HomeStoreController extends Controller
         
     }
 
-    public function getDataProduct()
-    {
-        // Lista de Produtos
-        $listProductModel = app(Product::class);
-        $listProduct = $listProductModel->all();
+    // public function getDataProduct()
+    // {
+    //     // Lista de Produtos
+    //     $listProductModel = app(Product::class);
+    //     $listProduct = $listProductModel->all();
 
-        return response()->json($listProduct);
+    //     return response()->json($listProduct);
+    // }
+
+
+    public function getDataProduct(Request $request)
+    {
+
+        if($request->ajax()){
+            // Lista de Produtos
+            $listProductModel = app(Product::class);
+            $listProduct = $listProductModel->paginate(5);
+
+            return view('list', compact('listProduct'))->render();
+        }
     }
 }

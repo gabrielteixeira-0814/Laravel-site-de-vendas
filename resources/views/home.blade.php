@@ -32,13 +32,42 @@
   </div>
 </div>
 <div class="container my-5 px-0 border-top">
-  <div class="row justify-content-center mt-3 listProduct"></div>
+  <div class="row justify-content-center mt-3 user_data"></div>
 </div>
 @endsection
 
 @section('script')
 
 {{-- Animações dos produtos --}}
-<script src="{{ asset('js/home.js') }}"></script>
+{{-- <script src="{{ asset('js/home.js') }}"></script> --}}
+
+<script>
+
+  $(document).ready(function(){
+    carregarTabela(0);
+  });
+
+  $(document).on('click', '.paginacao a', function(e) {
+
+    e.preventDefault();
+
+    var pagina = $(this).attr('href').split('page=')[1];
+
+    console.log(pagina);
+    carregarTabela(pagina);
+
+  });
+
+  function carregarTabela(pagina) {
+    $.ajax({
+      url: "{{ route('home.getDataProduct') }}" + "?page=" + pagina,
+      method: 'GET',
+    }).done(function(data){
+
+      $('.user_data').html(data);
+    });
+  }
+
+</script>
 
 @endsection

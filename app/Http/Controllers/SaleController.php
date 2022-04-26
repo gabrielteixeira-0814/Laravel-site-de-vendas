@@ -231,17 +231,7 @@ class SaleController extends Controller
         return view("payment");
     }
 
-    public function testeList()
-    {
-
-        $listSaleModel = app(Sale::class);
-
-        $listSale = $listSaleModel::with(['product'])->where('status', 1)->orderBy('created_at', 'desc')->paginate(5);
-
-        return view("paginacao", compact('listSale'));
-    }
-
-
+ 
     public function getDataUser()
     {
         $cpf = $_GET['cpf'];
