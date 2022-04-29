@@ -32,42 +32,19 @@
   </div>
 </div>
 <div class="container my-5 px-0 border-top">
+  <form class="form mt-5" method="" id="form" class="form">
+    <div class="row">
+      <div class="col-4">
+        <label class="form-label">Nome</label>
+        <input type="text" class="form-control" name="name" id="name" value=""/>
+      </div>
+    </div>
+  </form>
   <div class="row justify-content-center mt-3 user_data"></div>
 </div>
 @endsection
 
 @section('script')
-
-{{-- Animações dos produtos --}}
-{{-- <script src="{{ asset('js/home.js') }}"></script> --}}
-
-<script>
-
-  $(document).ready(function(){
-    carregarTabela(0);
-  });
-
-  $(document).on('click', '.paginacao a', function(e) {
-
-    e.preventDefault();
-
-    var pagina = $(this).attr('href').split('page=')[1];
-
-    console.log(pagina);
-    carregarTabela(pagina);
-
-  });
-
-  function carregarTabela(pagina) {
-    $.ajax({
-      url: "{{ route('home.getDataProduct') }}" + "?page=" + pagina,
-      method: 'GET',
-    }).done(function(data){
-
-      $('.user_data').html(data);
-    });
-  }
-
-</script>
-
+  {{-- Pega os itens do produto --}}
+  <script src="{{ asset('js/home.js') }}"></script>
 @endsection

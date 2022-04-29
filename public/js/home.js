@@ -1,5 +1,37 @@
 
-/*** Gráfico de pizza das vendas por porcentagem de vendidos e cancelados ***/
+/*** Adiciona os itens do produto na pagina inicial com ajax e jquer ***/
+$(document).ready(function(){
+    carregarTabela(0);
+  });
+
+  $(document).on('click', '.paginacao a', function(e) {
+    e.preventDefault();
+    var pagina = $(this).attr('href').split('page=')[1];
+    carregarTabela(pagina);
+  });
+
+  // Filtro
+  $(document).on('keyup submit', '.form', function(e) {
+    e.preventDefault();
+    carregarTabela(0);
+  });
+
+  function carregarTabela(pagina) {
+    var dados = $('#form').serialize();
+
+    $.ajax({
+      url: "/getDataProduct" + "?page=" + pagina,
+      method: 'GET',
+      data: dados
+    }).done(function(data){
+      console.log(data);
+      $('.user_data').html(data);
+    });
+  }
+  
+/****************************************************************************/
+
+/*** Como inserir com appeend ***/
 $(document).ready(function(){
 
     $.ajax({

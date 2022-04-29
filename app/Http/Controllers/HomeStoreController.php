@@ -86,25 +86,17 @@ class HomeStoreController extends Controller
         
     }
 
-    // public function getDataProduct()
-    // {
-    //     // Lista de Produtos
-    //     $listProductModel = app(Product::class);
-    //     $listProduct = $listProductModel->all();
-
-    //     return response()->json($listProduct);
-    // }
-
-
     public function getDataProduct(Request $request)
     {
 
         if($request->ajax()){
+
             // Lista de Produtos
             $listProductModel = app(Product::class);
-            $listProduct = $listProductModel->paginate(5);
+            $listProduct = $listProductModel->where('name', 'like', '%'.$request->name.'%')->paginate(5);
 
-            return view('list', compact('listProduct'))->render();
+                //return response()->json($listProduct);
+            return view('lists.itensProduct', compact('listProduct'))->render();
         }
     }
 }

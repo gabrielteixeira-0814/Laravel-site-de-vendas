@@ -33,7 +33,7 @@ Route::get('paymentPage/{id}', 'SaleController@paymentPage')->name('paymentPage'
 // Criação de novas função no controlador usando rota com ajax Jquery
 Route::get('getSeachSale', 'DashboardController@getSeachSale')->name('dashboard.getSeachSale');
 
-// Lista de produtos para pagina inicial "Home" ajax Jquery
+// Lista de produtos dinâmicamente para pagina inicial "Home" ajax Jquery
 Route::get('getDataProduct', 'HomeStoreController@getDataProduct')->name('home.getDataProduct');
 
 // Rota para trazer dados para os Kpis com ajax Jquery
