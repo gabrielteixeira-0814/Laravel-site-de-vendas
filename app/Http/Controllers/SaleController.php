@@ -253,7 +253,7 @@ class SaleController extends Controller
             $findSale->update($data);
             return back()->with('success', 'Venda deletada com sucesso.');
         }else {
-            return back()->with('error', 'Error ao tenta escluir a venda. Tente novamente!');
+            return back()->with('error', 'Error ao tenta excluir a venda. Tente novamente!');
         }
     }
 }

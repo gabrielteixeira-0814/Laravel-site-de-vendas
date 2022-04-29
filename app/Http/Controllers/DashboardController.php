@@ -187,23 +187,6 @@ class DashboardController extends Controller
     {
         //
     }
-
-    // public function getSeachSale()
-    // {
-    //     $cpf = $_GET['cpf'];
-    //     $dateIni = $_GET['dateIni'];
-    //     $dateFin = $_GET['dateFin'];
-
-    //     $user = app(User::class);
-    //     $findUser = $user->where('cpf', $cpf)->select('id','cpf','name','email')->get();
-        
-    //     // List Sales
-    //     $listSaleModel = app(Sale::class);
-    //     $listSale = $listSaleModel::with(['product'])->where('idUser', $findUser[0]['id'])->where('status', 1)->orderBy('created_at', 'desc')->get();
-    
-    //     return response()->json($listSale);
-    // }
-
 }
 
     
