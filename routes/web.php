@@ -34,8 +34,14 @@ Route::get('getDataUser', 'SaleController@getDataUser')->name('sale.getDataUser'
 // Lista de produtos dinâmicamente para pagina inicial "Home" ajax Jquery
 Route::get('getDataProduct', 'HomeStoreController@getDataProduct')->name('home.getDataProduct');
 
+// Tabela de vendas
+Route::get('getTableDataSale', 'DashboardController@getTableDataSale')->name('dashboard.getTableDataSale');
 
-// Rota para trazer dados para os Kpis com ajax Jquery
+// Tabela de produtos
+Route::get('getTableDataProduct', 'DashboardController@getTableDataProduct')->name('dashboard.getTableDataProduct');
+
+
+// Rota para trazer dados para os Kpis com ajax Jquery  
 // Quando for usar dentro de um arquivo blade usar o apelido (kpis.getDataKpis)
 // Quando for usar a rota dentro do arquivo js usar (getDataKpis)
 Route::get('getDataKpis', 'KpisController@getDataKpis')->name('kpis.getDataKpis');

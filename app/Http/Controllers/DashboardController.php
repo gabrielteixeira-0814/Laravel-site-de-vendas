@@ -187,6 +187,75 @@ class DashboardController extends Controller
     {
         //
     }
+
+    public function getTableDataSale(Request $request)
+    {
+        if($request->ajax()) {
+            
+            // List Sales sem filtro
+            $listIUserModel = app(User::class);
+            $listSaleModel = app(Sale::class);
+            
+            // Filtro
+            if($request->cpf || $request->dateIni || $request->dateFin) {
+
+                // Encontrar usuario pelo cpf
+                $findUser = $listIUserModel->where('cpf', $request->cpf)->get();
+
+                if($request->cpf != '' && $request->dateIni != '' && $request->dateFin != '') {
+
+                    // List Sales
+                    $listSale = $listSaleModel::with(['product'])->where('idUser', $findUser[0]['id'])->where([
+                        ['dateSale', '>=', $request->dateIni],
+                        ['dateSale', '<=', $request->dateFin],
+                    ])->orderBy('created_at', 'desc')->paginate(5);
+
+                } else {
+                    if($request->cpf != '') {
+                        // List Sales
+                        $listSale = $listSaleModel::with(['product'])->where('idUser', $findUser[0]['id'])->where('status', 1)->orderBy('created_at', 'desc')->paginate(5);
+                    }
+
+                    if($request->dateIni != '' && $request->dateFin != '') {
+                    
+                        // List Sales
+                        $listSale = $listSaleModel::with(['product'])->where([
+                            ['dateSale', '>=', $request->dateIni],
+                            ['dateSale', '<=', $request->dateFin],
+                        ])->orderBy('created_at', 'desc')->paginate(5);
+                    }
+                }
+
+            }else {
+
+                // List Sales sem filtro
+                $listSale = $listSaleModel::with(['product'])->where('status', 1)->orderBy('created_at', 'desc')->paginate(5);
+            }
+
+
+                // return response()->json($listSale);
+                return view('lists.listSale', compact('listSale'))->render();
+        }
+    }
+
+    public function getTableDataProduct(Request $request)
+    {
+        if($request->ajax()){
+
+            // List Products sem filtro
+            $listProductModel = app(Product::class);
+            // List Products
+            $listProduct = $listProductModel->where('status', 1)->orderBy('created_at', 'desc')->paginate(5);
+            
+
+            // // Lista de Produtos
+            // $listProductModel = app(Product::class);
+            // $listProduct = $listProductModel->where('name', 'like', '%'.$request->name.'%')->paginate(5);
+
+            // return response()->json($listSale);
+            return view('lists.listProduct', compact('listProduct'))->render();
+        }
+    }
 }
 
     

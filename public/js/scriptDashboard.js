@@ -36,3 +36,81 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     // Your code to run since DOM is loaded and ready
     });
+
+
+    /*** Tabela de vendas ***/
+    
+    $(document).ready(function(){
+        carregarTabelaSale(0);
+    });
+
+    $(document).on('click', '.paginationSale a', function(e) {
+        e.preventDefault();
+        var pagina = $(this).attr('href').split('page=')[1];
+        carregarTabelaSale(pagina);
+    });
+
+    // Filtro
+    $(document).on('submit', '.form_sale', function(e) {
+        e.preventDefault();
+        carregarTabelaSale(0);
+    });
+
+    // Limpar filtro
+    // $(document).on('click', '.clear', function(e) {
+    //     e.preventDefault();
+    //     carregarTabelaSale(0);
+    // });
+
+    function carregarTabelaSale(pagina) {
+        var dados = $('#form_sale').serialize();
+
+        console.log(dados);
+
+        $.ajax({
+        url: "/getTableDataSale" + "?page=" + pagina,
+        method: 'GET',
+        data: dados
+        }).done(function(data){
+        // console.log(data);
+        $('.sale_data').html(data);
+        });
+    }
+  
+
+
+
+
+
+    
+    /*** Tabela de produtos ***/
+    
+    $(document).ready(function(){
+        carregarTabelaProduct(0);
+    });
+
+    $(document).on('click', '.paginationProduct a', function(e) {
+        e.preventDefault();
+        var pagina = $(this).attr('href').split('page=')[1];
+        carregarTabelaProduct(pagina);
+    });
+
+    // Filtro
+    $(document).on('keyup submit', '.form', function(e) {
+        e.preventDefault();
+        carregarTabelaProduct(0);
+    });
+
+    function carregarTabelaProduct(pagina) {
+        var dados = $('#form').serialize();
+
+        $.ajax({
+        url: "/getTableDataProduct" + "?page=" + pagina,
+        method: 'GET',
+        data: dados
+        }).done(function(data){
+        //console.log(data);
+        $('.product_data').html(data);
+        });
+    }
+  

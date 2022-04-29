@@ -14,7 +14,7 @@
         <div class='card-body'>
             <h5 class="card-title mb-5">Tabela de vendas
                 <a href="{{ route('sale.create') }}" class='btn btn-secondary float-right btn-sm rounded'><i class='fa fa-plus'></i></a></h5>
-            <form>
+            <form method="" class="form_sale" id="form_sale">
                 <div class="form-row align-items-center">
                     <div class="col-sm-4 my-1">
                         <div class="input-group">
@@ -50,64 +50,12 @@
                             <i class='fa fa-search'></i></button>
                     </div>
                     <div class="my-1">
-                        <button type="submit" class="btn btn-warning text-light" style='padding: 10px 16px;'>Limpar</button>
+                        <button type="button" class="btn btn-warning text-light clear" style='padding: 10px 16px;'>Limpar</button>
                     </div>
                 </div>
             </form>
-            <table class='table'>
-                <tr>
-                    <th scope="col">
-                        Produto
-                    </th>
-                    <th scope="col">
-                        Data
-                    </th>
-                    <th scope="col">
-                        Valor do produto
-                    </th>
-                    <th scope="col">
-                        Quantidade
-                    </th>
-                    <th scope="col">
-                        Valor do desconto
-                    </th>
-                    <th scope="col">
-                        Valor
-                    </th>
-                    <th scope="col">
-                        Ações
-                    </th>
-                </tr>
-
-                @foreach ($listSale as $sale)
-                    <tr>
-                        <td>
-                            {{ $sale->product->name }}
-                        </td>
-                        <td>
-                            {{ date("d/m/Y", strtotime($sale->dateSale)) }} 
-                        </td>
-                        <td>
-                            R$ {{ str_replace('.', ',', $sale->product->price) }}
-                        </td>
-                        <td  class="pl-5">
-                            {{ $sale->quantity }}
-                        </td>
-                        <td>
-                            R$ {{ str_replace('.', ',', $sale->discount) }}
-                        </td>
-                        <td>
-                            R$ {{ str_replace('.', ',', $sale->valueSale) }}
-                        </td>
-                        <td>
-                            <a href='{{route('sale.edit',$sale->id)}}' class='btn btn-primary'>Editar</a>
-                            <a href="{{route('sale.deleteEditsale',$sale->id)}}" class='btn btn-danger'>Deletar</a>
-                        </td>
-                    </tr>
-                @endforeach
-                </tr>
-            </table>
-            {{ $listSale->links() }}
+            {{-- Insere a pagina listSale.blade.php --}}
+            <div class="sale_data"></div>
         </div>
     </div>
     <div class='card mt-3'>
@@ -166,37 +114,11 @@
         <div class='card-body'>
             <h5 class="card-title mb-5">Produtos
                 <a href="{{ route('product.create') }}" class='btn btn-secondary float-right btn-sm rounded'><i class='fa fa-plus'></i></a></h5>
-            <table class='table'>
-                <tr>
-                    <th scope="col">
-                        Nome
-                    </th>
-                    <th scope="col">
-                        Valor
-                    </th>
-                    <th scope="col">
-                        Ações
-                    </th>
-                </tr>
-
-                @foreach ($listProduct as $product)
-                    <tr>
-                        <td>
-                            {{ $product->name }}
-                        </td>
-                        <td>
-                            R$ {{ str_replace('.', ',', $product->price) }}
-                        </td>
-                        <td>
-                            <a href="{{route('product.edit',$product->id)}}" class='btn btn-primary'>Editar</a>
-                            <a href="{{route('product.show',$product->id)}}" class='btn btn-danger'>Deletar</a>
-                        </td>
-                    </tr>
-                @endforeach
-            </table>
-            {{ $listProduct->links() }}
+                {{-- Insere a pagina listProduct.blade.php --}}
+            <div class="product_data"></div>
 
         </div>
     </div>
 </div>
 @endsection
+
