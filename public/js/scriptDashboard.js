@@ -7,18 +7,18 @@ document.addEventListener("DOMContentLoaded", function(event) {
     headerpd = document.getElementById(headerId)
 
     // Validate that all variables exist
-    if(toggle && nav && bodypd && headerpd){
-    toggle.addEventListener('click', ()=>{
-    // show navbar
-    nav.classList.toggle('show')
-    // change icon
-    toggle.classList.toggle('bx-x')
-    // add padding to body
-    bodypd.classList.toggle('body-pd')
-    // add padding to header
-    headerpd.classList.toggle('body-pd')
-    })
-    }
+        if(toggle && nav && bodypd && headerpd){
+            toggle.addEventListener('click', ()=>{
+            // show navbar
+            nav.classList.toggle('show')
+            // change icon
+            toggle.classList.toggle('bx-x')
+            // add padding to body
+            bodypd.classList.toggle('body-pd')
+            // add padding to header
+            headerpd.classList.toggle('body-pd')
+            })
+        }
     }
 
     showNavbar('header-toggle','nav-bar','body-pd','header')
@@ -53,15 +53,23 @@ document.addEventListener("DOMContentLoaded", function(event) {
     // Filtro
     $(document).on('submit', '.form_sale', function(e) {
         e.preventDefault();
+
+        // Limpando o input de limpar filtro
+        $('#clearFilter').val('');
         carregarTabelaSale(0);
     });
 
     // Limpar filtro
-    // $(document).on('click', '.clear', function(e) {
-    //     e.preventDefault();
-    //     carregarTabelaSale(0);
-    // });
+    $(document).on('click', '.clear', function(e) {
+        e.preventDefault();
 
+        var clearFilterNoActiver = "clear";
+        $('#clearFilter').val(clearFilterNoActiver);
+        carregarTabelaSale(0);
+        
+    });
+
+    
     function carregarTabelaSale(pagina) {
         var dados = $('#form_sale').serialize();
 

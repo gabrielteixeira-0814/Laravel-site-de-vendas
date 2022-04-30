@@ -195,46 +195,53 @@ class DashboardController extends Controller
             // List Sales sem filtro
             $listIUserModel = app(User::class);
             $listSaleModel = app(Sale::class);
-            
-            // Filtro
-            if($request->cpf || $request->dateIni || $request->dateFin) {
 
-                // Encontrar usuario pelo cpf
-                $findUser = $listIUserModel->where('cpf', $request->cpf)->get();
+            // Limpar filtro
+            if($request->clearFilter == '') {
 
-                if($request->cpf != '' && $request->dateIni != '' && $request->dateFin != '') {
+                // Filtro
+                if($request->cpf || $request->dateIni || $request->dateFin) {
 
-                    // List Sales
-                    $listSale = $listSaleModel::with(['product'])->where('idUser', $findUser[0]['id'])->where([
-                        ['dateSale', '>=', $request->dateIni],
-                        ['dateSale', '<=', $request->dateFin],
-                    ])->orderBy('created_at', 'desc')->paginate(5);
+                    // Encontrar usuario pelo cpf
+                    $findUser = $listIUserModel->where('cpf', $request->cpf)->get();
 
-                } else {
-                    if($request->cpf != '') {
+                    if($request->cpf != '' && $request->dateIni != '' && $request->dateFin != '') {
+
                         // List Sales
-                        $listSale = $listSaleModel::with(['product'])->where('idUser', $findUser[0]['id'])->where('status', 1)->orderBy('created_at', 'desc')->paginate(5);
-                    }
-
-                    if($request->dateIni != '' && $request->dateFin != '') {
-                    
-                        // List Sales
-                        $listSale = $listSaleModel::with(['product'])->where([
+                        $listSale = $listSaleModel::with(['product'])->where('idUser', $findUser[0]['id'])->where([
                             ['dateSale', '>=', $request->dateIni],
                             ['dateSale', '<=', $request->dateFin],
                         ])->orderBy('created_at', 'desc')->paginate(5);
-                    }
-                }
 
-            }else {
+                    } else {
+                        if($request->cpf != '') {
+                            // List Sales
+                            $listSale = $listSaleModel::with(['product'])->where('idUser', $findUser[0]['id'])->where('status', 1)->orderBy('created_at', 'desc')->paginate(5);
+                        }
+
+                        if($request->dateIni != '' && $request->dateFin != '') {
+                        
+                            // List Sales
+                            $listSale = $listSaleModel::with(['product'])->where([
+                                ['dateSale', '>=', $request->dateIni],
+                                ['dateSale', '<=', $request->dateFin],
+                            ])->orderBy('created_at', 'desc')->paginate(5);
+                        }
+                    }
+                } else {
+
+                    // List Sales sem filtro
+                    $listSale = $listSaleModel::with(['product'])->where('status', 1)->orderBy('created_at', 'desc')->paginate(5);
+                }
+            } else {
 
                 // List Sales sem filtro
                 $listSale = $listSaleModel::with(['product'])->where('status', 1)->orderBy('created_at', 'desc')->paginate(5);
             }
 
 
-                // return response()->json($listSale);
-                return view('lists.listSale', compact('listSale'))->render();
+            //return response()->json($listSale);
+            return view('lists.listSale', compact('listSale'))->render();
         }
     }
 

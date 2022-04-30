@@ -45,6 +45,7 @@
                             <input type="date" class="form-control" id="" name="dateFin" placeholder="Username">
                         </div>
                     </div>
+                    <input type="text" hidden class="" id="clearFilter" name="clearFilter">
                     <div class="mx-2">
                         <button type="submit" class="btn btn-primary" style='padding: 14.5px 16px;'>
                             <i class='fa fa-search'></i></button>
