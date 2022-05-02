@@ -85,11 +85,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
         });
     }
   
-
-
-
-
-
     
     /*** Tabela de produtos ***/
     
