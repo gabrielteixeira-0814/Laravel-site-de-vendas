@@ -3,8 +3,8 @@
     <p>Sales site</p>
 </h1>
 
-<h1 align="center">Imagem
-    <img src="" />
+<h1>
+  <img src="src/assets/vendas.gif" />
 </h1>
 
 
