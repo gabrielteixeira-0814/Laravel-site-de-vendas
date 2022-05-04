@@ -4,7 +4,7 @@
 </h1>
 
 <h1>
-  <img src="src/assets/vendas.gif" />
+  <img src="public/img/vendas.gif" />
 </h1>
 
 
