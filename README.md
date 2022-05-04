@@ -17,16 +17,26 @@
 ## 🔨 Tools
 
 - PHP
-- LARAVEL
 - MYSQL
 - AJAX
 - HTML5
 - CSS
-- BOOTSTRAP
 - JAVASCRIPT
-- JQUERY
 
-## 👍 How Contribute
+## Libraries/Frameworks
+
+- [LARAVEL](https://laravel.com/docs/8.x/installation)
+- [JQUERY](https://jquery.com/)
+- [AJAX](https://www.devmedia.com.br/o-que-e-o-ajax/6702)
+- [BOOTSTRAP](https://getbootstrap.com/docs/5.0/getting-started/introduction/) 
+
+
+### Requirements
+
+- Have installed at least one composer package manager, [composer](https://getcomposer.org/).
+- It is necessary that you have a [MySql](https://www.mysql.com/) database for the connection.
+
+## 👨‍💻 How to Setup
 
 ```bash
     # Clone the project
@@ -57,4 +67,12 @@
     # This command will start a development server at http://localhost:8000
     $ php artisan serve
 ```
+
+## 📝 License
+
+This project is under the MIT license. See the file <a href="https://github.com/gabrielteixeira-0814/React-list-tarefa/blob/main/LICENSE">LICENCE</a> for more details.
+
+---
+
+<p align="center">Created by Gabriel Teixeira</p>
 
