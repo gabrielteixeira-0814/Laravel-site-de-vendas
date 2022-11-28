@@ -25,7 +25,7 @@
 
 ## Libraries/Frameworks
 
-- [LARAVEL](https://laravel.com/docs/8.x/installation)
+- [LARAVEL 7](https://laravel.com/docs/8.x/installation)
 - [JQUERY](https://jquery.com/)
 - [AJAX](https://www.devmedia.com.br/o-que-e-o-ajax/6702)
 - [BOOTSTRAP](https://getbootstrap.com/docs/5.0/getting-started/introduction/) 
